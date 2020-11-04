@@ -413,6 +413,7 @@ public class HbaseUtil {
         scan.setFilter(filter);
         scan.withStartRow(Bytes.toBytes(startRowKey));
         ResultScanner scanner = table.getScanner(scan);
+
  
         return scanner;
     }
@@ -483,6 +484,7 @@ public class HbaseUtil {
         }
         return list;
     }
+
  
  
     /**
