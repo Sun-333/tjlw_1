@@ -22,5 +22,8 @@ public interface P4Service {
      */
     public boolean createP4InfoTables();
 
-    public P4Info
+    /**
+     * 以rowKey查找P4数据
+     */
+    public P4Info findByTimestamp(String time);
 }

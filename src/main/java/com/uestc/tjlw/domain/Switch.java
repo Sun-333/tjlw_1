@@ -29,8 +29,8 @@ public class Switch {
      * @return 数组中为当前交换机列表名
      */
     public  String[] getColumns(){
-        return new String[]{"switchId"+"_"+switchId,"timestamp"+"_"+switchId,"upPort"+"_"+switchId,
-                "upIp"+"_"+switchId,"downPort"+"_"+switchId,"downIP"+"_"+switchId};
+        return new String[]{switchId+"_switchId",switchId+"_timestamp",switchId+"_upPort",
+                switchId+"_upIp",switchId+"_downPort",switchId+"_downIP"};
     }
 
     /**
@@ -48,5 +48,8 @@ public class Switch {
         this.upIp = upIp;
         this.downPort = downPort;
         this.downIP = downIP;
+    }
+
+    public Switch() {
     }
 }

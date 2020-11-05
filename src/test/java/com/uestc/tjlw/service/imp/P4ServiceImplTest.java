@@ -34,13 +34,14 @@ public class P4ServiceImplTest {
     @Autowired
     private HBaseService hBaseService;
 
-    @Test
+
     public void add2Hbase() {
         System.out.println(p4Service.createP4InfoTables());
     }
 
     @Test
     public void createP4InfoTables() {
+        hBaseService.deleteRow("p4Info","28918941");
         P4Info p4Info = new P4Info("28918941","192.168.50.0","192.168.50.4",
                 "80","80","http","28918942");
         List<Switch> switches = new ArrayList<>();
@@ -59,5 +60,9 @@ public class P4ServiceImplTest {
         result2.forEach((k,value) -> {
             System.out.println(k + "---" + value);
         });
+    }
+    @Test
+    public void  findByTimestamp(){
+        System.out.println(p4Service.findByTimestamp("28918941").toString());
     }
 }

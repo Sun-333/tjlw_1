@@ -4,7 +4,9 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yushansun
@@ -15,6 +17,10 @@ import java.util.List;
  */
 @Data
 public class P4Info {
+    public static final int baseKeySize=7;
+    public static final int switchKeySize=6;
+
+
     //行键
     private String timestamp;
     //源 IP
@@ -32,6 +38,7 @@ public class P4Info {
     //交换机信息
     private List<Switch> switchList;
 
+
     //baseInfo对应familyName;
     @Value("${p4.baseInfo.familyName}")
     private static  String baseFamilyName="baseInfo";
@@ -45,7 +52,7 @@ public class P4Info {
      * @return 数组中为p4基本信息列表名
      */
     public static String[] getColumns(){
-        return new String[]{"sourceIp","targetIp","sourcePort","targetPort","protocolType","protocolTimestamp"};
+        return new String[]{"sourceIp","targetIp","sourcePort","targetPort","protocolType","protocolTimestamp","switcheIds"};
     }
 
     /**
@@ -61,7 +68,11 @@ public class P4Info {
      * @return
      */
     public String[] getValues(){
-        return new String[]{sourceIp,targetIp,sourcePort,targetPort,protocolType,protocolTimestamp};
+        StringBuffer stringBuffer = new StringBuffer();
+        switchList.forEach(aSwitch -> {
+            stringBuffer.append(aSwitch.getSwitchId()+",");
+        });
+        return new String[]{sourceIp,targetIp,sourcePort,targetPort,protocolType,protocolTimestamp,stringBuffer.toString()};
     }
 
     /**
@@ -92,5 +103,41 @@ public class P4Info {
         this.targetPort = targetPort;
         this.protocolType = protocolType;
         this.protocolTimestamp = protocolTimestamp;
+    }
+
+    public P4Info() {
+    }
+
+    /**
+     * 将Hbase查询p4数据行转换为P4Info类
+     * @param info hbase中一行k-v数据
+     * @return 映射为 P4Info对象
+     */
+    public static P4Info getBaseInfoInstance(Map<String,String> info){
+        P4Info res = new P4Info();
+        List<Switch> switches = new ArrayList<>();
+        //设置baseInfo
+        res.timestamp=info.get("timestamp");
+        res.sourceIp=info.get("sourceIp");
+        res.targetIp=info.get("targetIp");
+        res.sourcePort=info.get("sourcePort");
+        res.targetPort=info.get("targetPort");
+        res.protocolType=info.get("protocolType");
+        res.protocolTimestamp=info.get("protocolTimestamp");
+        String[] ids = info.get("switcheIds").split(",");
+
+        for (String str:ids){
+            int switchId = Integer.parseInt(str);
+            Switch aSwitch = new Switch();
+            aSwitch.setDownIP(info.get(switchId+"_downIP"));
+            aSwitch.setDownPort(info.get(switchId+"_downPort"));
+            aSwitch.setSwitchId(info.get(switchId+"_switchId"));
+            aSwitch.setTimestamp(info.get(switchId+"_timestamp"));
+            aSwitch.setUpIp(info.get(switchId+"_upIp"));
+            aSwitch.setUpPort(info.get(switchId+"_upPort"));
+            switches.add(aSwitch);
+        }
+        res.setSwitchList(switches);
+        return res;
     }
 }
