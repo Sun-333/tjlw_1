@@ -3,6 +3,8 @@ package com.uestc.tjlw.service;
 import com.uestc.tjlw.domain.P4Info;
 import com.uestc.tjlw.domain.Switch;
 
+import java.util.List;
+
 /**
  * @author yushansun
  * @title: P4Service
@@ -26,4 +28,9 @@ public interface P4Service {
      * 以rowKey查找P4数据
      */
     public P4Info findByTimestamp(String time);
+
+    /**
+     * baseInfo 多列值与设定目标相等多条件查询
+     */
+    public List<P4Info> findColumnsEqualCondition(String[] columns,String[] cmpValues);
 }

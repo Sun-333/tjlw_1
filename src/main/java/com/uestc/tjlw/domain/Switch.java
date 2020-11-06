@@ -1,5 +1,8 @@
 package com.uestc.tjlw.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -12,22 +15,30 @@ import lombok.Data;
 @Data
 public class Switch {
     //交换机ID
+    @ApiModelProperty(value = "交换机ID", required = true)
     private String switchId;
     //时间戳
+    @ApiModelProperty(value = "时间戳", required = true)
     private String timestamp;
     //上行交换机端口
+    @ApiModelProperty(value = "上行交换机端口", required = true)
     private String upPort;
     //上行交换机内网地址
+    @ApiModelProperty(value = "上行交换机内网地址", required = true)
     private String upIp;
     //下行交换机端口
+    @ApiModelProperty(value = "下行交换机端口", required = true)
     private String downPort;
     //下行交换机地址
+    @ApiModelProperty(value = "下行交换机地址", required = true)
     private String downIP;
 
     /**
      * 获取switche columns
      * @return 数组中为当前交换机列表名
      */
+    @JsonIgnore
+    @JSONField(serialize = false)
     public  String[] getColumns(){
         return new String[]{switchId+"_switchId",switchId+"_timestamp",switchId+"_upPort",
                 switchId+"_upIp",switchId+"_downPort",switchId+"_downIP"};
@@ -37,6 +48,8 @@ public class Switch {
      * 获取交换机 value
      * @return
      */
+    @JsonIgnore
+    @JSONField(serialize = false)
     public String[] getValues(){
         return new String[]{switchId,timestamp,upPort,upIp,downPort,downIP};
     }

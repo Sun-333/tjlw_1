@@ -19,12 +19,7 @@ import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.client.Table;
 import org.apache.hadoop.hbase.client.TableDescriptor;
 import org.apache.hadoop.hbase.client.TableDescriptorBuilder;
-import org.apache.hadoop.hbase.filter.ColumnPrefixFilter;
-import org.apache.hadoop.hbase.filter.Filter;
-import org.apache.hadoop.hbase.filter.PrefixFilter;
-import org.apache.hadoop.hbase.filter.QualifierFilter;
-import org.apache.hadoop.hbase.filter.RowFilter;
-import org.apache.hadoop.hbase.filter.SubstringComparator;
+import org.apache.hadoop.hbase.filter.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -351,7 +346,7 @@ public class HBaseService {
      * @param scan 过滤条件
      * @return java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>
      */
-    private Map<String,Map<String,String>> queryData(String tableName,Scan scan){
+    public Map<String,Map<String,String>> queryData(String tableName,Scan scan){
         //<rowKey,对应的行数据>
         Map<String,Map<String,String>> result = new HashMap<>();
 
@@ -423,6 +418,18 @@ public class HBaseService {
         }
 
         return result;
+    }
+
+    /**
+     * singleColumnValueFilter
+     * @param columnFamily 列镞
+     * @param column 列
+     * @param compareOperator 比较符
+     * @param value 比较值
+     * @return 过滤器
+     */
+    public  Filter singleColumnValueFilter(String columnFamily, String column,CompareOperator compareOperator, String value) {
+        return new SingleColumnValueFilter(Bytes.toBytes(columnFamily), Bytes.toBytes(column), compareOperator, Bytes.toBytes(value));
     }
 
     /**

@@ -17,10 +17,7 @@
 
     <properties>
         <hbase-spring-boot>1.0.0.RELEASE</hbase-spring-boot>
-        <io.grpc.version>1.23.0</io.grpc.version>
-        <os-maven-plugin.version>1.6.2</os-maven-plugin.version>
-        <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
-        <grpc-starter-version>3.4.1</grpc-starter-version>
+        <springfox-swagger.version>2.9.2</springfox-swagger.version>
     </properties>
 
     <dependencies>
@@ -50,6 +47,18 @@
             <artifactId>lombok</artifactId>
             <version>1.16.20</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger.version}</version>
+        </dependency>
+
         <!-- Junit -->
         <dependency>
             <groupId>junit</groupId>
@@ -58,45 +67,72 @@
         </dependency>
 
         <dependency>
-            <groupId>io.github.lognet</groupId>
-            <artifactId>grpc-spring-boot-starter</artifactId>
-            <version>${grpc-starter-version}</version>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-bean-validators</artifactId>
+            <version>${springfox-swagger.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.58</version>
+        </dependency>
     </dependencies>
 
+
+
+
+    <!--spring boot打包的话需要指定一个唯一的入门-->
     <build>
-        <extensions>
-            <extension>
-                <groupId>kr.motd.maven</groupId>
-                <artifactId>os-maven-plugin</artifactId>
-                <version>${os-maven-plugin.version}</version>
-            </extension>
-        </extensions>
+        <finalName>tjlw-hbase</finalName>
         <plugins>
             <plugin>
-                <groupId>org.xolstice.maven.plugins</groupId>
-                <artifactId>protobuf-maven-plugin</artifactId>
-                <version>${protobuf-maven-plugin.version}</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <protocArtifact>
-                        com.google.protobuf:protoc:3.9.1:exe:${os.detected.classifier}
-                    </protocArtifact>
-                    <pluginId>grpc-java</pluginId>
-                    <pluginArtifact>
-                        io.grpc:protoc-gen-grpc-java:1.23.0:exe:${os.detected.classifier}
-                    </pluginArtifact>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.uestc.tjlw.TjlwApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
-                            <goal>compile</goal>
-                            <goal>compile-custom</goal>
+                            <goal>repackage</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+            <!--为了spring boot的yml和properties文件能够使用maven变量替换,使用${}占位符-->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>utf-8</encoding>
+                    <useDefaultDelimiters>true</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
 </project>

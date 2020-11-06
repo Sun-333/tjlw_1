@@ -3,12 +3,19 @@ package com.uestc.tjlw.service.imp;
 import com.uestc.tjlw.domain.P4Info;
 import com.uestc.tjlw.service.HBaseService;
 import com.uestc.tjlw.service.P4Service;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.hadoop.hbase.CompareOperator;
+import org.apache.hadoop.hbase.client.Scan;
+import org.apache.hadoop.hbase.filter.Filter;
+import org.apache.hadoop.hbase.filter.FilterList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,7 +32,6 @@ public class P4ServiceImpl implements P4Service {
     @Autowired
     private HBaseService hBaseService;
 
-    @Value("${P4.tableName}")
     private String  p4TableName="p4Info";    //表格名称
 
 
@@ -50,7 +56,37 @@ public class P4ServiceImpl implements P4Service {
     public P4Info findByTimestamp(String timestamp) {
         Map<String,String> info = hBaseService.getRowData(p4TableName,timestamp);
         P4Info p4Info =  P4Info.getBaseInfoInstance(info);
+        if (p4Info==null) return p4Info;
         p4Info.setTimestamp(timestamp);
         return p4Info;
+    }
+
+    @Override
+    public List<P4Info> findColumnsEqualCondition(String[] columns, String[] cmpValues) {
+        FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);     //且过滤器集合
+        Scan scan = new Scan();
+        List<P4Info> p4InfoList = new ArrayList<>();
+        if(cmpValues.length!=columns.length) return null; //后续补充异常返回信息
+        /*
+        通过参数条件创建过滤器
+         */
+        for (int i=0;i<columns.length;i++){
+            String column = columns[i];
+            String value = cmpValues[i];
+            if(StringUtils.isEmpty(value)) continue;
+            Filter filter = hBaseService.singleColumnValueFilter(P4Info.getBaseInfoFamilyName(),column,CompareOperator.EQUAL,value);
+            filterList.addFilter(filter);
+        }
+        scan.setFilter(filterList);
+        Map<String,Map<String,String>> map = hBaseService.queryData(p4TableName,scan);
+        /*
+        将查询结果封装
+         */
+        map.forEach((k,info)->{
+            P4Info p4Info =  P4Info.getBaseInfoInstance(info);
+            p4Info.setTimestamp(k);
+            p4InfoList.add(p4Info);
+        });
+        return p4InfoList;
     }
 }
