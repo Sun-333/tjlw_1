@@ -37,6 +37,7 @@ public class AddInfoHandler  extends ChannelInboundHandlerAdapter {
             JsonMsg jsonMsg = (JsonMsg) msg;
             P4Info p4Info = JsonUtil.jsonToPojo(jsonMsg.getContent(), P4Info.class);
             p4Service.add2Hbase(p4Info);
+
         });
     }
 }

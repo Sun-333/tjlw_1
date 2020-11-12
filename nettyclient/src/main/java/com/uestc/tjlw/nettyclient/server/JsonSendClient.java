@@ -4,6 +4,7 @@ import com.uestc.tjlw.common.pojo.P4Info;
 import com.uestc.tjlw.common.pojo.Switch;
 import com.uestc.tjlw.common.protocol.JsonMsg;
 import com.uestc.tjlw.common.util.JsonUtil;
+import com.uestc.tjlw.nettyclient.p4Info.GetP4InfoThread;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hbase.thirdparty.io.netty.bootstrap.Bootstrap;
@@ -78,23 +79,12 @@ public class JsonSendClient {
             f.sync();
             Channel channel = f.channel();
 
-            //发送 Json 字符串对象
-            for (int i = 0; i < 1000; i++) {
-                P4Info p4Info = new P4Info("28918950"+i,"192.168.50.0","192.168.50.4",
-                        "80","80","http","28918942");
-                List<Switch> switches = new ArrayList<>();
-                for (int j=1;j<=4;j++){
-                    Switch switch_1 = new Switch(i+"","28918941","80","192.168.50"+"."+i,"80","192.168.50"+"."+i+1);
-                    switches.add(switch_1);
-                }
-                p4Info.setSwitchList(switches);
-                JsonMsg user = build(i,  JsonUtil.pojoToJson(p4Info));
-                channel.writeAndFlush(user.convertToJson());
-                log.info("发送报文：" + user.convertToJson());
-            }
+           //启动抓包服务
+            GetP4InfoThread getP4InfoThread = new GetP4InfoThread("p4抓包解析发送线程",channel);
+            getP4InfoThread.start();
+
+
             channel.flush();
-
-
             // 7 等待通道关闭的异步任务结束
             // 服务监听通道会一直等待通道关闭的异步任务结束
             ChannelFuture closeFuture = channel.closeFuture();
@@ -107,7 +97,6 @@ public class JsonSendClient {
             // 释放掉所有资源包括创建的线程
             workerLoopGroup.shutdownGracefully();
         }
-
     }
 
     //构建Json对象
