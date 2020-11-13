@@ -35,5 +35,11 @@ public interface P4Service {
     /**
      * baseInfo 多列值与设定目标相等多条件查询
      */
-    public List<P4Info> findColumnsEqualCondition(String[] columns,String[] cmpValues);
+    public List<P4Info> findColumnsAndEqualCondition(String[] columns,String[] cmpValues);
+
+    /**
+     * baseInfo 多列值与设定目标相等多条件查询
+     */
+    public List<P4Info> findColumnsOrEqualCondition(String[] columns,String[] cmpValues);
+
 }

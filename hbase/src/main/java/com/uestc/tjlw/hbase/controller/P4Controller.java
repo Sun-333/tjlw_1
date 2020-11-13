@@ -43,17 +43,37 @@ public class P4Controller {
 
     @ApiOperation(value = "多列值与设定目标相等多条件查询")
     @PostMapping("/findColumnsEqualCondition")
-    public GlobalRet<List<P4Info>> findColumnsEqualCondition(
+    public GlobalRet<List<P4Info>> findColumnsAndEqualCondition(
             @RequestParam(value = "源地址IP",required = false) String sourceIp,
+            @RequestParam(value = "数据包大小",required = false) String bagsize,
             @RequestParam(value = "目标地址IP",required = false)String targetIp,
             @RequestParam(value = "源地址端口",required = false) String sourcePort,
             @RequestParam(value = "目标地址端口",required = false)String targetPort,
             @RequestParam(value = "协议类型",required = false) String protocolType,
             @RequestParam(value = "协议发送时间戳",required = false) String protocolTimestamp
             ){
-        List<P4Info> p4InfoList = p4Service.findColumnsEqualCondition(
-                new String[]{"sourceIp","targetIp","sourcePort","targetPort","protocolType","protocolTimestamp"},
-                new String[]{sourceIp,targetIp,sourcePort,targetPort,protocolType,protocolTimestamp});
+        List<P4Info> p4InfoList = p4Service.findColumnsAndEqualCondition(
+                new String[]{"bagsize","sourceIp","targetIp","sourcePort","targetPort","protocolType","protocolTimestamp"},
+                new String[]{bagsize,sourceIp,targetIp,sourcePort,targetPort,protocolType,protocolTimestamp});
         return new GlobalRet<>(p4InfoList);
     }
+
+    @ApiOperation(value = "多列值与设定目标或多条件查询")
+    @PostMapping("/findColumnsOrEqualCondition")
+    public GlobalRet<List<P4Info>> findColumnsOrEqualCondition(
+            @RequestParam(value = "源地址IP",required = false) String sourceIp,
+            @RequestParam(value = "数据包大小",required = false) String bagsize,
+            @RequestParam(value = "目标地址IP",required = false)String targetIp,
+            @RequestParam(value = "源地址端口",required = false) String sourcePort,
+            @RequestParam(value = "目标地址端口",required = false)String targetPort,
+            @RequestParam(value = "协议类型",required = false) String protocolType,
+            @RequestParam(value = "协议发送时间戳",required = false) String protocolTimestamp
+    ){
+        List<P4Info> p4InfoList = p4Service.findColumnsOrEqualCondition(
+                new String[]{"bagsize","sourceIp","targetIp","sourcePort","targetPort","protocolType","protocolTimestamp"},
+                new String[]{bagsize,sourceIp,targetIp,sourcePort,targetPort,protocolType,protocolTimestamp});
+        return new GlobalRet<>(p4InfoList);
+    }
+
+
 }

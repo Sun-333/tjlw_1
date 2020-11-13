@@ -1,3 +1,4 @@
+/*
 package com.uestc.tjlw.service;
 
 import com.uestc.tjlw.hbase.service.HBaseService;
@@ -12,12 +13,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
  
+*/
 /**
  * 测试Hbase SQL
  * @author zifangsky
  * @date 2018/7/3
  * @since 1.0.0
- */
+ *//*
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @WebAppConfiguration
@@ -26,9 +29,11 @@ public class TestHbaseSql {
     @Autowired
     private HBaseService hbaseService;
  
-    /**
+    */
+/**
      * 测试删除、创建表
-     */
+     *//*
+
     @Test
     public void testCreateTable() {
         //删除表
@@ -65,9 +70,11 @@ public class TestHbaseSql {
         });
     }
 
-    /**
+    */
+/**
      * 测试指定startRowKey和stopRowKey的查询
-     */
+     *//*
+
     @Test
     public void testSelectByStartStopRowKey(){
         Map<String,Map<String,String>> result = hbaseService.getResultScanner("test_base","66804_000002","66804_000004");
@@ -80,18 +87,22 @@ public class TestHbaseSql {
         });
         System.out.println("-----------------------");
     }
-    /**
+    */
+/**
      * 测试获取所有表名
-     */
+     *//*
+
     @Test
     public void testGetTableNameLists(){
         List<String> result = hbaseService.getAllTableNames();
 
         result.forEach(System.out::println);
     }
-    /**
+    */
+/**
      * 测试获取指定单元格多个版本的数据
-     */
+     *//*
+
     @Test
     public void testGetColumnValuesByVersion(){
         hbaseService.setColumnValue("test_base","66804_000002","f","varName","aa");
@@ -103,9 +114,11 @@ public class TestHbaseSql {
         List<String> result = hbaseService.getColumnValuesByVersion("test_base","66804_000002","f","varName",4);
         result.forEach(System.out::println);
     }
-    /**
+    */
+/**
      * 测试根据行键过滤器查询数据
-     */
+     *//*
+
     @Test
     public void testGetResultScannerPrefixFilter(){
         hbaseService.putData("test_base","111","f",new String[]{"project_id","varName","coefs","pvalues","tvalues","create_time"},new String[]{"111","111","111","111","111","null"});
@@ -123,9 +136,11 @@ public class TestHbaseSql {
         });
     }
 
-    /**
+    */
+/**
      * 测试根据列名过滤器查询数据
-     */
+     *//*
+
     @Test
     public void testGetResultScannerColumnPrefixFilter(){
         hbaseService.putData("test_base","211","f",new String[]{"project_id"},new String[]{"11111"});
@@ -144,9 +159,11 @@ public class TestHbaseSql {
         });
     }
 
-    /**
+    */
+/**
      * 测试查询行键中包含特定字符的数据
-     */
+     *//*
+
     @Test
     public void testGetResultScannerRowFilter(){
         hbaseService.putData("test_base","abc666666def","f",new String[]{"project_id","varName","coefs","pvalues","tvalues","create_time"},new String[]{"111","abc6666def","111","111","111","null"});
@@ -163,4 +180,4 @@ public class TestHbaseSql {
             System.out.println("-----------------------");
         });
     }
-}
+}*/

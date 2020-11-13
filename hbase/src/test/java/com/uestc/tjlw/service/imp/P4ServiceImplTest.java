@@ -1,3 +1,4 @@
+/*
 
 package com.uestc.tjlw.service.imp;
 
@@ -23,13 +24,15 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 
+*/
 /**
  * @author yushansun
  * @title: P4ServiceImplTest
  * @projectName tjlw
  * @description: TODO
  * @date 2020/11/45:09 下午
- */
+ *//*
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -47,7 +50,7 @@ public class P4ServiceImplTest {
     @Test
     public void createP4InfoTables() {
         hBaseService.deleteRow("p4Info","28918941");
-        P4Info p4Info = new P4Info("28918941","192.168.50.0","192.168.50.4",
+        P4Info p4Info = new P4Info("28918941","1024","192.168.50.0","192.168.50.4",
                 "80","80","http","28918942");
         List<Switch> switches = new ArrayList<>();
         for (int i=1;i<=4;i++){
@@ -70,4 +73,15 @@ public class P4ServiceImplTest {
     public void  findByTimestamp(){
         System.out.println(p4Service.findByTimestamp("28918941").toString());
     }
+
+    @Test
+    public void findColumnsAndEqualCondition(){
+        System.out.println(p4Service.findColumnsAndEqualCondition(new String[]{"sourcePort","sourceIp"}, new String[]{"80","192.168.50.2"}).toString());
+    }
+
+    @Test
+    public void findColumnsOrEqualCondition(){
+        System.out.println(p4Service.findColumnsOrEqualCondition(new String[]{"sourceIp","targetIp"}, new String[]{"192.168.50.517","192.168.50.4"}).toString());
+    }
 }
+*/

@@ -26,6 +26,7 @@ public class GetP4InfoThread extends Thread{
     private Thread thread;
     private String name;
     private Channel channel;    //netty客户端通道
+    private volatile long count=0;
 
     public GetP4InfoThread(String name, Channel channel) {
         this.name = name;
@@ -43,6 +44,7 @@ public class GetP4InfoThread extends Thread{
 
             //异步数据解析与发送
             CallbackTaskScheduler.add(new CallbackTask<P4Info>() {
+
                 /**
                  * 执行异步数据包解析服务
                  * @return 解析的p4数据
@@ -61,7 +63,7 @@ public class GetP4InfoThread extends Thread{
                 @Override
                 public void onBack(P4Info p4Info) {
                     JsonMsg jsonMsg = new JsonMsg();
-                    jsonMsg.setId(1);
+                    jsonMsg.setId(count++);
                     jsonMsg.setContent(JsonUtil.pojoToJson(p4Info));
                     channel.writeAndFlush(jsonMsg.convertToJson());
                 }
@@ -75,9 +77,6 @@ public class GetP4InfoThread extends Thread{
                     log.error("解析p4数据错误："+t.getMessage());
                 }
             });
-
-            //正常开启后可删除
-            Thread.sleep(1000);
         }
     }
 

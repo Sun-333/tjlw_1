@@ -62,7 +62,7 @@ public class P4ServiceImpl implements P4Service {
     }
 
     @Override
-    public List<P4Info> findColumnsEqualCondition(String[] columns, String[] cmpValues) {
+    public List<P4Info> findColumnsAndEqualCondition(String[] columns, String[] cmpValues) {
         FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);     //且过滤器集合
         Scan scan = new Scan();
         List<P4Info> p4InfoList = new ArrayList<>();
@@ -84,6 +84,35 @@ public class P4ServiceImpl implements P4Service {
          */
         map.forEach((k,info)->{
             P4Info p4Info =  P4Info.getBaseInfoInstance(info);
+            p4Info.setTimestamp(k);
+            p4InfoList.add(p4Info);
+        });
+        return p4InfoList;
+    }
+
+    @Override
+    public List<P4Info> findColumnsOrEqualCondition(String[] columns, String[] cmpValues) {
+        FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ONE);
+        Scan scan = new Scan();
+        List<P4Info> p4InfoList = new ArrayList<>();
+        if(cmpValues.length != columns.length)
+            return null;
+        for (int i=0; i< columns.length; i++)
+        {
+            String column = columns[i];
+            String value = cmpValues[i];
+            if (StringUtils.isEmpty(value))
+                continue;
+            Filter filter = hBaseService.singleColumnValueFilter(P4Info.getBaseInfoFamilyName(),column,CompareOperator.EQUAL,value);
+            filterList.addFilter(filter);
+        }
+        scan.setFilter(filterList);
+        //map承载查询的结果
+        Map<String,Map<String,String>> map = hBaseService.queryData(p4TableName,scan);
+
+        //封装查询结果
+        map.forEach((k,info)->{
+            P4Info p4Info = P4Info.getBaseInfoInstance(info);
             p4Info.setTimestamp(k);
             p4InfoList.add(p4Info);
         });

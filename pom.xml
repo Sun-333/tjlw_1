@@ -20,7 +20,6 @@
     </properties>
 
     <dependencies>
-
         <!-- Spring Boot Web 依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -90,6 +89,5 @@
             <artifactId>hutool-all</artifactId>
             <version>4.5.14</version>
         </dependency>
-
     </dependencies>
 </project>

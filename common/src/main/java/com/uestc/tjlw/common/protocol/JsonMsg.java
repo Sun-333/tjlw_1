@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class JsonMsg {
     //id Field(域)
-    private int id;
+    private long id;
     //content Field(域)
     private String content;
 

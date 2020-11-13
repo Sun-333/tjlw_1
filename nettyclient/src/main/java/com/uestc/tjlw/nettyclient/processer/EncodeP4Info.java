@@ -17,7 +17,7 @@ import java.util.List;
 public class EncodeP4Info {
 
     public P4Info encode(){
-        P4Info p4Info = new P4Info("28918950","192.168.50.0","192.168.50.4",
+        P4Info p4Info = new P4Info("28918950","1024","192.168.50.0","192.168.50.4",
                 "80","80","http","28918942");
         List<Switch> switches = new ArrayList<>();
         for (int j=1;j<=4;j++){

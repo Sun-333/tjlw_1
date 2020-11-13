@@ -33,6 +33,10 @@ public class P4Info {
     @ApiModelProperty(value = "源IP", required = true, example = "192.168.50.2")
     private String sourceIp;
 
+    //源 IP
+    @ApiModelProperty(value = "数据包大小", required = true, example = "1024")
+    private String bagsize;
+
     //目标IP
     @ApiModelProperty(value = "目标IP", required = true, example = "192.168.50.4")
     private String targetIp;
@@ -73,7 +77,7 @@ public class P4Info {
     @JsonIgnore
     @JSONField(serialize = false)
     public static String[] getColumns(){
-        return new String[]{"sourceIp","targetIp","sourcePort","targetPort","protocolType","protocolTimestamp","switcheIds"};
+        return new String[]{"bagsize","sourceIp","targetIp","sourcePort","targetPort","protocolType","protocolTimestamp","switcheIds"};
     }
 
     /**
@@ -97,7 +101,7 @@ public class P4Info {
         switchList.forEach(aSwitch -> {
             stringBuffer.append(aSwitch.getSwitchId()+",");
         });
-        return new String[]{sourceIp,targetIp,sourcePort,targetPort,protocolType,protocolTimestamp,stringBuffer.toString()};
+        return new String[]{bagsize,sourceIp,targetIp,sourcePort,targetPort,protocolType,protocolTimestamp,stringBuffer.toString()};
     }
 
     /**
@@ -126,8 +130,9 @@ public class P4Info {
         return new String[]{baseFamilyName,switchesFamilyName};
     }
 
-    public P4Info(String timestamp, String sourceIp, String targetIp, String sourcePort, String targetPort, String protocolType, String protocolTimestamp) {
+    public P4Info(String timestamp,String bagsize, String sourceIp, String targetIp, String sourcePort, String targetPort, String protocolType, String protocolTimestamp) {
         this.timestamp = timestamp;
+        this.bagsize = bagsize;
         this.sourceIp = sourceIp;
         this.targetIp = targetIp;
         this.sourcePort = sourcePort;
@@ -150,6 +155,7 @@ public class P4Info {
         List<Switch> switches = new ArrayList<>();
         //设置baseInfo
         res.timestamp=info.get("timestamp");
+        res.bagsize=info.get("bagsize");
         res.sourceIp=info.get("sourceIp");
         res.targetIp=info.get("targetIp");
         res.sourcePort=info.get("sourcePort");
@@ -171,4 +177,5 @@ public class P4Info {
         res.setSwitchList(switches);
         return res;
     }
+
 }
