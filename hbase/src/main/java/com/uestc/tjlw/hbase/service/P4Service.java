@@ -6,6 +6,7 @@ package com.uestc.tjlw.hbase.service;
 
 import com.uestc.tjlw.common.pojo.P4Info;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -41,5 +42,9 @@ public interface P4Service {
      * baseInfo 多列值与设定目标相等多条件查询
      */
     public List<P4Info> findColumnsOrEqualCondition(String[] columns,String[] cmpValues);
+    /**
+     * 以最近rowkey为关键字返回最近100条p4数据
+     */
+    public List<P4Info> returnClosestAHundred() throws IOException;
 
 }

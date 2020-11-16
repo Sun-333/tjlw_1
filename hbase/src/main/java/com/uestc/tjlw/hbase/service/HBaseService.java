@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CompareOperator;
+import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.filter.*;
@@ -706,6 +707,24 @@ public class HBaseService {
             close(admin,null,null);
         }
         return true;
+    }
+    /**
+     * 查询表中所有的rowkey
+     * @author wking
+     * @data 2020/11/13
+     * @since 1.0.0
+     * @param tableName
+     * @return java.Util.List
+     * */
+    public List<String> getRowKey(String tableName) throws IOException{
+        Table table = connection.getTable(TableName.valueOf(tableName));//借助connection创建表连接————创建连接池
+        Scan scan = new Scan();
+        ResultScanner results =  table.getScanner(scan);
+        List<String> list = new ArrayList<>();
+        for(Result result:results){
+            list.add(new String(result.getRow()));
+        }
+        return list;
     }
 
     /**

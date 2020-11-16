@@ -2,8 +2,11 @@ package com.uestc.tjlw.nettyclient.processer;
 
 import com.uestc.tjlw.common.pojo.P4Info;
 import com.uestc.tjlw.common.pojo.Switch;
+import com.uestc.tjlw.nettyclient.util.ByteUtil;
+import net.sourceforge.jpcap.net.UDPPacket;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,15 +19,39 @@ import java.util.List;
  */
 public class EncodeP4Info {
 
-    public P4Info encode(){
-        P4Info p4Info = new P4Info("28918950","1024","192.168.50.0","192.168.50.4",
-                "80","80","http","28918942");
+    public P4Info encode(UDPPacket udpPacket){
+        P4Info p4Info = new P4Info();
         List<Switch> switches = new ArrayList<>();
-        for (int j=1;j<=4;j++){
-            Switch switch_1 = new Switch(j+"","28918941","80","192.168.50.2","80","192.168.50.3");
-            switches.add(switch_1);
+        try {
+            byte[] data = udpPacket.getUDPData();
+            String isoData = new String(data, "ISO-8859-1");
+            p4Info.setBagsize(isoData.length()+"");         //设置数据大小
+
+            String destAddress  = udpPacket.getDestinationAddress();
+            p4Info.setTargetIp(destAddress);                //设置目的IP地址
+
+            String sourceAddress = udpPacket.getSourceAddress();
+            p4Info.setSourceIp(sourceAddress);              //设置源端口号
+
+            p4Info.setSourcePort(udpPacket.getDestinationPort()+"");
+            p4Info.setTargetPort(udpPacket.getDestinationPort()+"");
+            p4Info.setProtocolType("udp");                  //设置协议类型
+
+            byte[] ipData = udpPacket.getIPData();
+            byte[] headInfo=udpPacket.getIPHeader();
+
+            int count = ByteUtil.getInt2(new byte[]{headInfo[22],headInfo[23]});
+
+            for (int i=0;i<count;i++){
+                List<Byte> switchesByte = new ArrayList<>();
+                Switch swi = new Switch();
+                byte[] a = new byte[]{headInfo[24+8*i],headInfo[24+8*i+2],headInfo[24+8*i+3],headInfo[24+8*i+4]};
+                swi.setSwitchId(ByteUtil.getInt4(a)+"");
+                switches.add(swi);
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
-        p4Info.setSwitchList(switches);
         return p4Info;
     }
 }

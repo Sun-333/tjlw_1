@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -117,5 +118,19 @@ public class P4ServiceImpl implements P4Service {
             p4InfoList.add(p4Info);
         });
         return p4InfoList;
+    }
+    @Override
+    public List<P4Info> returnClosestAHundred() throws IOException {
+        List<P4Info> P4InfoList = new ArrayList<>();
+        List<String> Rowkey = hBaseService.getRowKey("p4Info");
+        int rowkeyNumber = Rowkey.size();
+        for(int i = rowkeyNumber - 1, j=0; i >=0 ||j < 100; i--){
+            P4Info  p4Info = this.findByTimestamp(Rowkey.get(i));
+            p4Info.setSwitchList(null);
+            P4InfoList.add(p4Info);
+            j++;
+        }
+
+        return P4InfoList;
     }
 }

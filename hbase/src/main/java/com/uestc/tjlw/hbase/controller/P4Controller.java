@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -74,6 +75,9 @@ public class P4Controller {
                 new String[]{bagsize,sourceIp,targetIp,sourcePort,targetPort,protocolType,protocolTimestamp});
         return new GlobalRet<>(p4InfoList);
     }
-
-
+    @ApiOperation(value = "最近数据")
+    @PostMapping("/returnClosestAHundred")
+    public GlobalRet<List<P4Info>> returnClosestAHundred() throws IOException {
+        return new GlobalRet<>(p4Service.returnClosestAHundred());
+    }
 }
