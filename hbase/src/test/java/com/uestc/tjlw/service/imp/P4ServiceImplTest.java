@@ -1,4 +1,4 @@
-/*
+
 
 package com.uestc.tjlw.service.imp;
 
@@ -7,6 +7,7 @@ package com.uestc.tjlw.service.imp;
 
 import com.uestc.tjlw.common.pojo.P4Info;
 import com.uestc.tjlw.common.pojo.Switch;
+import com.uestc.tjlw.hbase.HbaseApplication;
 import com.uestc.tjlw.hbase.service.HBaseService;
 import com.uestc.tjlw.hbase.service.P4Service;
 import org.junit.Test;
@@ -24,18 +25,17 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 
-*/
 /**
  * @author yushansun
  * @title: P4ServiceImplTest
  * @projectName tjlw
  * @description: TODO
  * @date 2020/11/45:09 下午
- *//*
+ */
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = HbaseApplication.class)
 public class P4ServiceImplTest {
     @Autowired
     private P4Service p4Service;
@@ -84,4 +84,3 @@ public class P4ServiceImplTest {
         System.out.println(p4Service.findColumnsOrEqualCondition(new String[]{"sourceIp","targetIp"}, new String[]{"192.168.50.517","192.168.50.4"}).toString());
     }
 }
-*/

@@ -53,9 +53,9 @@ public class P4Info {
     @ApiModelProperty(value = "协议类型", required = true, example = "http")
     private String protocolType;
 
-    //时间戳
+/*    //时间戳
     @ApiModelProperty(value = "时间戳", required = true, example = "28918943")
-    private String protocolTimestamp;
+    private String protocolTimestamp;*/
 
     //交换机信息
     @ApiModelProperty(value = "交换机信息", required = true)
@@ -77,7 +77,7 @@ public class P4Info {
     @JsonIgnore
     @JSONField(serialize = false)
     public static String[] getColumns(){
-        return new String[]{"bagsize","sourceIp","targetIp","sourcePort","targetPort","protocolType","protocolTimestamp","switcheIds"};
+        return new String[]{"bagsize","sourceIp","targetIp","sourcePort","targetPort","protocolType","switcheIds"};
     }
 
     /**
@@ -101,7 +101,7 @@ public class P4Info {
         switchList.forEach(aSwitch -> {
             stringBuffer.append(aSwitch.getSwitchId()+",");
         });
-        return new String[]{bagsize,sourceIp,targetIp,sourcePort,targetPort,protocolType,protocolTimestamp,stringBuffer.toString()};
+        return new String[]{bagsize,sourceIp,targetIp,sourcePort,targetPort,protocolType,stringBuffer.toString()};
     }
 
     /**
@@ -138,10 +138,10 @@ public class P4Info {
         this.sourcePort = sourcePort;
         this.targetPort = targetPort;
         this.protocolType = protocolType;
-        this.protocolTimestamp = protocolTimestamp;
     }
 
     public P4Info() {
+
     }
 
     /**
@@ -161,21 +161,14 @@ public class P4Info {
         res.sourcePort=info.get("sourcePort");
         res.targetPort=info.get("targetPort");
         res.protocolType=info.get("protocolType");
-        res.protocolTimestamp=info.get("protocolTimestamp");
         String[] ids = info.get("switcheIds").split(",");
 
         for (String switchId:ids){
             Switch aSwitch = new Switch();
-            aSwitch.setDownIP(info.get(switchId+"_downIP"));
-            aSwitch.setDownPort(info.get(switchId+"_downPort"));
             aSwitch.setSwitchId(info.get(switchId+"_switchId"));
-            aSwitch.setTimestamp(info.get(switchId+"_timestamp"));
-            aSwitch.setUpIp(info.get(switchId+"_upIp"));
-            aSwitch.setUpPort(info.get(switchId+"_upPort"));
             switches.add(aSwitch);
         }
         res.setSwitchList(switches);
         return res;
     }
-
 }

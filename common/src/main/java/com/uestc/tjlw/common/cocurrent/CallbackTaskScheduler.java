@@ -8,9 +8,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * Created by 尼恩 at 疯狂创客圈
- */
+
 public class CallbackTaskScheduler extends Thread {
     private final Logger logger = Logger.getLogger(this.getClass());
     private ConcurrentLinkedQueue<CallbackTask> executeTaskQueue =

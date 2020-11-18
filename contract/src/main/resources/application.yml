@@ -1,0 +1,50 @@
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      max-file-size: 1073741824MB
+      max-request-size: 1073741824MB
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization.write_dates_as_timestamps: true
+    time-zone: GMT+8
+
+  kafka:
+    bootstrap-servers: 192.168.50.240:9092 #指定kafka server的地址，集群配多个，中间，逗号隔开
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: contract #群组ID
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+server:
+  port: 8085
+
+logging:
+  config: classpath:logback.xml
+  level:
+    io.swagger.models.parameters.AbstractSerializableParameter: error
+
+contract:
+  demo:
+    identity: test3  # 合约标识
+    version: "3.0"  # 合约版本
+baas:
+  sdk:
+    appId: 241143067397062656 # 应用ID
+    privateKeyPath: /Users/yushansun/Desktop/政府诚信档案资料/验收材料/7套基础服务API/raybaas-demo-Nginx-test/sdk-demo-java/src/main/resources/sm2_private_241143067397062656.pfx # 证书路径
+    sslCertFilePath:   # （可不配置）
+    sslPrivateKeyPath: # （可不配置）
+  consensus: kafka   # 共识方式
+  channel: channel2       # 通道名称
+  order: 192.168.50.141:60899 # 多个地址时用英文分号";"分隔
+  peer: 192.168.50.141:60699   # 多个地址时用英文分号";"分隔

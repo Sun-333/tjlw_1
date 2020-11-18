@@ -80,7 +80,7 @@ public class JsonSendClient {
             Channel channel = f.channel();
 
            //启动抓包服务
-            GetP4InfoThread getP4InfoThread = new GetP4InfoThread("p4抓包解析发送线程",channel);
+            GetP4InfoThread getP4InfoThread = new GetP4InfoThread();
             getP4InfoThread.start();
 
 

@@ -15,6 +15,7 @@ import net.sourceforge.jpcap.net.TCPPacket;
 import net.sourceforge.jpcap.net.UDPPacket;
 import org.apache.hbase.thirdparty.io.netty.channel.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 
@@ -26,20 +27,17 @@ import org.springframework.stereotype.Service;
  * @date 2020/11/121:14 下午
  */
 @Slf4j
+@Service("GetP4InfoThread")
 public class GetP4InfoThread extends Thread{
+    @Autowired
+    private KafkaTemplate<String,Object> kafkaTemplate;
+
     private EncodeP4Info encodeP4Info = new EncodeP4Info();
     private Thread thread;
-    private String name;
-    private Channel channel;    //netty客户端通道
     private volatile long count=0;
 
-    public GetP4InfoThread(String name, Channel channel) {
-        this.name = name;
-        this.channel=channel;
-    }
-
     /**
-     * 执行抓包程序获取并解析数据并将解析数据发送给netty服务器
+     * 执行抓包程序获取并解析数据并将解析数据发送给kafka
      */
     @SneakyThrows
     @Override
@@ -65,7 +63,7 @@ public class GetP4InfoThread extends Thread{
                         }
 
                         /**
-                         * 若解析成功将解析数据转化为JsonMsg对象并 以json格式发送给服务器
+                         * 若解析成功将解析数据转化为JsonMsg对象并 以json格式发送kafka
                          * @param p4Info p4数据
                          */
                         @Override
@@ -73,7 +71,8 @@ public class GetP4InfoThread extends Thread{
                             JsonMsg jsonMsg = new JsonMsg();
                             jsonMsg.setId(count++);
                             jsonMsg.setContent(JsonUtil.pojoToJson(p4Info));
-                            channel.writeAndFlush(jsonMsg.convertToJson());
+                            //返回ListenableFuture 后期如何改进代码
+                            kafkaTemplate.send("p4Info",jsonMsg.convertToJson());
                         }
 
                         /**
@@ -106,7 +105,7 @@ public class GetP4InfoThread extends Thread{
     public void start() {
         log.info("启动p4数据抓包服务");
         if (thread==null){
-            thread = new Thread(this,name);
+            thread = new Thread(this);
             thread.run();
         }
     }

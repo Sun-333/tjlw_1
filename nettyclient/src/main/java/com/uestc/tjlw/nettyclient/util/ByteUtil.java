@@ -23,7 +23,6 @@ public class ByteUtil {
     public static int getInt4(byte[] bytes) {
         return (0xff & bytes[3]) | (0xff00 & (bytes[2] << 8)) | (0xff0000 & (bytes[1] << 16)) | (0xff000000 & (bytes[0] << 24));
     }
-
     public static String deCodeIpAddr(byte[] ipArray) {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(ipArray[0]);

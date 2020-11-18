@@ -1,0 +1,37 @@
+
+spring:
+  data:
+    hbase:
+      quorum: myhbase
+      rootDir : /hbase
+      nodeParent: /hbase
+  kafka:
+    bootstrap-servers: 192.168.50.240:9092 #指定kafka server的地址，集群配多个，中间，逗号隔开
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: default_consumer_group #群组ID
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+server:
+  port: 8089
+  netty:
+    port: 6666
+
+
+HBase:
+  nodes: 192.168.50.240
+  maxsize: 500000
+
+P4:
+  tableName: p4Info
+  baseInfo:
+    familyName: baseInfo
+  switches:
+    familyName : switchesInfo
+
+

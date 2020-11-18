@@ -3,9 +3,6 @@ package com.uestc.tjlw.common.protocol;
 import com.uestc.tjlw.common.util.JsonUtil;
 import lombok.Data;
 
-/**
- * create by 尼恩 @ 疯狂创客圈
- **/
 @Data
 public class JsonMsg {
     //id Field(域)
