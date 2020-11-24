@@ -5,6 +5,7 @@ spring:
       file-size-threshold: 0
       max-file-size: 1073741824MB
       max-request-size: 1073741824MB
+
   http:
     encoding:
       charset: UTF-8

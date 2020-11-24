@@ -1,0 +1,25 @@
+spring:
+  data:
+    hbase:
+      quorum: myhbase
+      rootDir : /hbase
+      nodeParent: /hbase
+
+  redis:
+    host: 192.168.50.240
+    port: 6379
+    jedis:
+      pool:
+        max-wait: 30000
+        max-active: 100
+        max-idle: 20
+        min-idle: 0
+    timeout: 3000
+
+HBase:
+  nodes: 192.168.50.240
+  maxsize: 500000
+
+server:
+  port: 4567
+

@@ -1,7 +1,6 @@
 package com.uestc.tjlw.nettyclient;
 
-import com.uestc.tjlw.nettyclient.p4Info.GetP4InfoThread;
-import com.uestc.tjlw.nettyclient.server.JsonSendClient;
+import com.uestc.tjlw.nettyclient.producer.GetP4InfoThread;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;

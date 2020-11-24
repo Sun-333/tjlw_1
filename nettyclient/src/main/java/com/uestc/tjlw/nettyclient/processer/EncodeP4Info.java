@@ -4,6 +4,7 @@ import com.uestc.tjlw.common.pojo.P4Info;
 import com.uestc.tjlw.common.pojo.Switch;
 import com.uestc.tjlw.nettyclient.util.ByteUtil;
 import net.sourceforge.jpcap.net.UDPPacket;
+import org.apache.hadoop.hbase.protobuf.generated.HBaseProtos;
 import org.jcodings.util.Hash;
 import org.springframework.stereotype.Service;
 
@@ -54,7 +55,11 @@ public class EncodeP4Info {
             sw.setSwitchId(t+"");
             switches.add(sw);
         });
-        p4Info.setTimestamp(Calendar.getInstance().getTimeInMillis()+"");
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(Calendar.getInstance().getTimeInMillis());
+        stringBuilder.append("_");
+        stringBuilder.append(UUID.randomUUID().toString().replaceAll("-","").substring(0,8));
+        p4Info.setTimestamp(stringBuilder.toString());
         p4Info.setSwitchList(switches);
         return p4Info;
     }

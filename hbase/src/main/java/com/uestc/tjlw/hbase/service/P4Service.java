@@ -8,6 +8,7 @@ import com.uestc.tjlw.common.pojo.P4Info;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yushansun
@@ -47,4 +48,8 @@ public interface P4Service {
      */
     public List<P4Info> returnClosestAHundred() throws IOException;
 
+    /**
+     * DDoS攻击检测所需要的接口，按照目的IP查询返回一段时间内的数据包量和包大小
+     * */
+    public Map responseDDoSdemand(String targetIp, String startRowkey, String endRowkey) throws IOException;
 }

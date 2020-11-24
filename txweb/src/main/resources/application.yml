@@ -1,0 +1,18 @@
+spring:
+  kafka:
+    bootstrap-servers: 192.168.50.240:9092 #指定kafka server的地址，集群配多个，中间，逗号隔开
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: txconsumer #群组ID
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  thymeleaf:
+    prefix:
+      classpath: /templates   # 访问template下的html文件需要配置模板，映射
+    cache: false # 开发时关闭缓存,不然没法看到实时页
+server:
+  port: 7777

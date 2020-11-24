@@ -6,17 +6,14 @@ import com.uestc.tjlw.hbase.service.P4Service;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.hbase.CompareOperator;
 import org.apache.hadoop.hbase.client.Scan;
-import org.apache.hadoop.hbase.filter.Filter;
-import org.apache.hadoop.hbase.filter.FilterList;
+import org.apache.hadoop.hbase.filter.*;
+import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author yushansun
@@ -133,4 +130,34 @@ public class P4ServiceImpl implements P4Service {
 
         return P4InfoList;
     }
+
+    @Override
+    public Map responseDDoSdemand(String targetIp,String startRowkey,String endRowkey) throws IOException{
+        //创建Map对象承载返回值
+        Map response = new HashMap(new HashMap());
+
+    /*
+    按照目的IP查出来的所有满足条件的数据包
+     */
+        Map res1 = hBaseService.getResultScannerQualifierFilter("p4Info",targetIp);
+        response.put("所有时间段流向目的IP的数据包",res1);
+
+        //精确起止时间戳
+        startRowkey = hBaseService.getClostestRowkey("p4Info",startRowkey);
+        endRowkey = hBaseService.getClostestRowkey("p4Info",endRowkey);
+        Map res2 = hBaseService.getResultScanner("p4Info",startRowkey,endRowkey);
+
+    /*
+    按照起止时间戳得到的数据包
+     */
+        FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
+        Scan scan = new Scan();
+        scan.setStartRow(Bytes.toBytes(startRowkey));
+        scan.setStopRow(Bytes.toBytes(endRowkey));
+        Filter filter = new ValueFilter(CompareFilter.CompareOp.EQUAL, new SubstringComparator(targetIp));
+        scan.setFilter(filter);
+        Map res3 = hBaseService.queryData("p4Info",scan);
+        response.put("按照时间段与目的Ip筛选出的数据包",res3);
+        return response;
+    };
 }

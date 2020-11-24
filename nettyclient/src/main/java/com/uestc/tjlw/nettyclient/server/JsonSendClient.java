@@ -1,30 +1,20 @@
 package com.uestc.tjlw.nettyclient.server;
 
-import com.uestc.tjlw.common.pojo.P4Info;
-import com.uestc.tjlw.common.pojo.Switch;
 import com.uestc.tjlw.common.protocol.JsonMsg;
-import com.uestc.tjlw.common.util.JsonUtil;
-import com.uestc.tjlw.nettyclient.p4Info.GetP4InfoThread;
+import com.uestc.tjlw.nettyclient.producer.GetP4InfoThread;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hbase.thirdparty.io.netty.bootstrap.Bootstrap;
-import org.apache.hbase.thirdparty.io.netty.bootstrap.ServerBootstrap;
 import org.apache.hbase.thirdparty.io.netty.buffer.PooledByteBufAllocator;
 import org.apache.hbase.thirdparty.io.netty.channel.*;
 import org.apache.hbase.thirdparty.io.netty.channel.nio.NioEventLoopGroup;
 import org.apache.hbase.thirdparty.io.netty.channel.socket.SocketChannel;
-import org.apache.hbase.thirdparty.io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.apache.hbase.thirdparty.io.netty.channel.socket.nio.NioSocketChannel;
-import org.apache.hbase.thirdparty.io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import org.apache.hbase.thirdparty.io.netty.handler.codec.LengthFieldPrepender;
-import org.apache.hbase.thirdparty.io.netty.handler.codec.string.StringDecoder;
 import org.apache.hbase.thirdparty.io.netty.handler.codec.string.StringEncoder;
 import org.apache.hbase.thirdparty.io.netty.util.CharsetUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * create by 尼恩 @ 疯狂创客圈

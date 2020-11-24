@@ -1,0 +1,1 @@
+2020-11-18 20:50:07.572 [kafka-producer-network-thread | producer-1] WARN  org.apache.kafka.clients.NetworkClient - [Producer clientId=producer-1] Error while fetching metadata with correlation id 1 : {txHash=LEADER_NOT_AVAILABLE}

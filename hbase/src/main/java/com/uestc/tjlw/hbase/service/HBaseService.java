@@ -177,7 +177,7 @@ public class HBaseService {
      * @return Table
      * @throws IOException IOException
      */
-    private Table getTable(String tableName) throws IOException {
+    public Table getTable(String tableName) throws IOException {
         return connection.getTable(TableName.valueOf(tableName));
     }
 
@@ -725,6 +725,31 @@ public class HBaseService {
             list.add(new String(result.getRow()));
         }
         return list;
+    }
+
+    /**
+     * 根据给出的RowKey找到表中值最相近的Rowkey
+     * @author wking
+     * @data 2020/11/19
+     * @since 1.0.0
+     * @param tableName 表名
+     * @param  Rowkey
+     * @return
+     * */
+    public String getClostestRowkey(String tableName,String Rowkey) throws IOException {
+        List<String> allRowkey = this.getRowKey("p4Info");
+        long rowGap = Math.abs(Long.parseLong(Rowkey) - Long.parseLong(allRowkey.get(0)));
+        long rowChange = Math.abs(Long.parseLong(Rowkey) - Long.parseLong(allRowkey.get(0)));
+        String findRowkey = Rowkey;
+        for(int i = 1; i < allRowkey.size();i++){
+            rowChange = Math.abs(Long.parseLong(Rowkey) - Long.parseLong(allRowkey.get(i)));
+            if(rowChange < rowGap) {
+                rowGap = rowChange;
+                findRowkey = allRowkey.get(i);
+            }
+            else break;
+        }
+        return findRowkey;
     }
 
     /**

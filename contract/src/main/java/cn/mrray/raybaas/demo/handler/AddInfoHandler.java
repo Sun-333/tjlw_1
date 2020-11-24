@@ -1,6 +1,7 @@
 package cn.mrray.raybaas.demo.handler;
 
 import cn.mrray.raybaas.common.data.vo.CommonResponse;
+import cn.mrray.raybaas.demo.server.TxHashProducer;
 import cn.mrray.raybaas.demo.service.IntegrityContractService;
 import com.uestc.tjlw.common.cocurrent.CallbackTask;
 import com.uestc.tjlw.common.cocurrent.CallbackTaskScheduler;
@@ -32,6 +33,8 @@ import java.util.concurrent.ScheduledExecutorService;
 public class AddInfoHandler {
     @Autowired
     private IntegrityContractService integrityContractService;
+    @Autowired
+    private TxHashProducer txHashProducer;
     private ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()*2+1);
 
     public void handle(String msg)  {
@@ -47,7 +50,11 @@ public class AddInfoHandler {
                 Map<String,String> map = new HashMap<>();
                 map.put("key",p4Info.getTimestamp());
                 map.put("data",hash);
-                integrityContractService.save(map);
+                CommonResponse commonResponse = integrityContractService.save(map);
+                if (commonResponse.isSuccess()){
+                    //如果上链成功将交易txHash发送给kafka
+                    txHashProducer.sendTxHash(commonResponse.getTxHash());
+                }
             }
         });
         /*CallbackTaskScheduler.add(new CallbackTask<Boolean>() {

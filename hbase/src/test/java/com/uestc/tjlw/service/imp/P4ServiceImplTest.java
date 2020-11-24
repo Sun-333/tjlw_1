@@ -17,10 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -42,7 +40,7 @@ public class P4ServiceImplTest {
     @Autowired
     private HBaseService hBaseService;
 
-
+    @Test
     public void add2Hbase() {
         System.out.println(p4Service.createP4InfoTables());
     }
@@ -50,7 +48,7 @@ public class P4ServiceImplTest {
     @Test
     public void createP4InfoTables() {
         hBaseService.deleteRow("p4Info","28918941");
-        P4Info p4Info = new P4Info("28918941","1024","192.168.50.0","192.168.50.4",
+        P4Info p4Info = new P4Info("28918960005","1024","192.168.50.0","192.168.50.1",
                 "80","80","http","28918942");
         List<Switch> switches = new ArrayList<>();
         for (int i=1;i<=4;i++){
@@ -82,5 +80,15 @@ public class P4ServiceImplTest {
     @Test
     public void findColumnsOrEqualCondition(){
         System.out.println(p4Service.findColumnsOrEqualCondition(new String[]{"sourceIp","targetIp"}, new String[]{"192.168.50.517","192.168.50.4"}).toString());
+    }
+
+    @Test
+    public void responseDDoSdemand() throws IOException {
+        Map<String, Map<String,String>> result = hBaseService.getResultScanner("p4Info");
+        System.out.println(p4Service.responseDDoSdemand("192.168.50." +
+                "10.0.2.2", Long.toString(1605848286 ), Long.toString(289189506666l)));
+        result.forEach((k,value) -> {
+            System.out.println(k + "---" + value);
+        });
     }
 }

@@ -1,5 +1,7 @@
 package com.uestc.tjlw.service;
 
+import com.uestc.tjlw.hbase.service.HBaseService;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -18,5 +20,11 @@ import static org.junit.Assert.*;
 @SpringBootTest
 @WebAppConfiguration
 public class HBaseServiceTest {
+    private HBaseService hBaseService;
+    @Test
+    public void deleteRow()
+    {
+        hBaseService.deleteRow("p4Info","2891896666");
+    }
 
 }

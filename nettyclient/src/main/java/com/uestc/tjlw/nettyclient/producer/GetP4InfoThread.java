@@ -1,4 +1,4 @@
-package com.uestc.tjlw.nettyclient.p4Info;
+package com.uestc.tjlw.nettyclient.producer;
 
 import com.uestc.tjlw.common.cocurrent.CallbackTask;
 import com.uestc.tjlw.common.cocurrent.CallbackTaskScheduler;
@@ -13,7 +13,6 @@ import net.sourceforge.jpcap.capture.PacketListener;
 import net.sourceforge.jpcap.net.Packet;
 import net.sourceforge.jpcap.net.TCPPacket;
 import net.sourceforge.jpcap.net.UDPPacket;
-import org.apache.hbase.thirdparty.io.netty.channel.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
