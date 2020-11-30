@@ -1,6 +1,5 @@
 package com.uestc.web.controller;
 
-import com.uestc.tjlw.common.pojo.P4Info;
 import com.uestc.tjlw.common.pojo.Statistics;
 import com.uestc.tjlw.common.util.GlobalRet;
 import com.uestc.web.service.StatisticsService;
@@ -27,6 +26,7 @@ import java.util.List;
 public class StatisticsController {
     @Autowired
     private StatisticsService statisticsService;
+    @Autowired
     @ApiOperation(value = "统计一天流量信息")
     @GetMapping("/findHours")
     public GlobalRet<List<Statistics>> findHours(){
@@ -38,4 +38,8 @@ public class StatisticsController {
     public GlobalRet<List<Statistics>> findDays(){
         return new GlobalRet(statisticsService.findDays());
     }
+
+    /*public GlobalRet<Boolean> uploadDDosDetection(){
+
+    }*/
 }

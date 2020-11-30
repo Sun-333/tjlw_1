@@ -237,6 +237,27 @@ public class HBaseService {
 
         return this.queryData(tableName,scan);
     }
+    /**
+     * 根据startRowKey和stopRowKey,过滤器遍历查询指定表中的所有数据
+     * @author zifangsky
+     * @date 2018/7/4 18:21
+     * @since 1.0.0
+     * @param tableName 表名
+     * @param startRowKey 起始rowKey
+     * @param stopRowKey 结束rowKey
+     * @param filter filter
+     * @return java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>
+     */
+    public Map<String,Map<String,String>> getResultScanner(String tableName, String startRowKey, String stopRowKey,Filter filter){
+        Scan scan = new Scan();
+        scan.setFilter(filter);
+        if(StringUtils.isNoneBlank(startRowKey) && StringUtils.isNoneBlank(stopRowKey)){
+            scan.withStartRow(Bytes.toBytes(startRowKey));
+            scan.withStopRow(Bytes.toBytes(stopRowKey));
+        }
+
+        return this.queryData(tableName,scan);
+    }
 
     /**
      * 通过行前缀过滤器查询数据

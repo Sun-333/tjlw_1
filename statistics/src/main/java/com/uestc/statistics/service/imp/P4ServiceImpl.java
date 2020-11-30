@@ -1,5 +1,6 @@
 package com.uestc.statistics.service.imp;
 
+import com.google.common.util.concurrent.AtomicLongMap;
 import com.uestc.statistics.service.HBaseService;
 import com.uestc.statistics.service.P4Service;
 import com.uestc.tjlw.common.pojo.P4Info;
@@ -14,6 +15,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -31,6 +35,8 @@ public class P4ServiceImpl implements P4Service {
     private HBaseService hBaseService;
 
     private String  p4TableName="p4Info";    //表格名称
+
+    private ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
 
 
@@ -140,6 +146,24 @@ public class P4ServiceImpl implements P4Service {
             res.addAndGet(Integer.valueOf(info.get("bagsize")));
         });
         return res.longValue();
+    }
+
+    @Override
+    public Map<String, Long> findSourcesStreamSizeByTargetIp(String rowKeyBegin, String rowKeyEnd,String targetIp) {
+        System.out.println(rowKeyBegin);
+        System.out.println(rowKeyEnd);
+        AtomicLongMap<String> atomicLongMap = AtomicLongMap.create();
+        Filter filter = hBaseService.singleColumnValueFilter(P4Info.getBaseInfoFamilyName(),"targetIp",CompareOperator.EQUAL,targetIp);
+        Map<String,Map<String,String>> map = hBaseService.getResultScanner(p4TableName,rowKeyBegin,rowKeyEnd,filter);
+        map.forEach((k,info)->{
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    atomicLongMap.addAndGet(info.get("targetIp"),1);
+                }
+            });
+        });
+        return atomicLongMap.asMap();
     }
 
     @Override

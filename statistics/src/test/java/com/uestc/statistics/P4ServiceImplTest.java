@@ -11,6 +11,7 @@ import com.uestc.statistics.util.RedisUtil;
 import com.uestc.tjlw.common.pojo.P4Info;
 import com.uestc.tjlw.common.pojo.Statistics;
 import com.uestc.tjlw.common.pojo.Switch;
+import com.uestc.tjlw.common.util.GlobalRet;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,5 +107,19 @@ public class P4ServiceImplTest {
         stringBuilder.append("_");
         stringBuilder.append("FFFFFFFF");
         p4Service.cleanInfoBeforeTime(stringBuilder.toString());
+    }
+    @Test
+    public void test_n(){
+        long starTime=System.currentTimeMillis();
+        Calendar calendar_now = Calendar.getInstance();
+        Calendar calendar =Calendar.getInstance();
+        calendar.add(Calendar.SECOND,-600000);
+        System.out.println(p4Service.findSourcesStreamSizeByTargetIp(
+                calendar.getTimeInMillis() + "",
+                calendar_now.getTimeInMillis() + "",
+                "10.0.2.2"
+        ).toString());
+        long endTime=System.currentTimeMillis();
+        System.out.println((endTime - starTime));
     }
 }

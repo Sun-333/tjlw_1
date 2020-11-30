@@ -8,6 +8,7 @@ import com.uestc.tjlw.common.pojo.P4Info;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yushansun
@@ -53,8 +54,9 @@ public interface P4Service {
     public long findInfosBetween(String rowKeyBegin,String rowKeyEnd) throws IOException;
 
     /**
-     * 统计流量大
+     * 以两个时间戳与目的IP统计源各源Ip流量大小
      */
+    public Map<String,Long> findSourcesStreamSizeByTargetIp(String rowKeyBegin,String rowKeyEnd,String targetIp);
     /**
      * 清理在某个前的所有数据
      */
