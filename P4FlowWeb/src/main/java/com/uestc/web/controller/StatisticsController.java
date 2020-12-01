@@ -39,7 +39,4 @@ public class StatisticsController {
         return new GlobalRet(statisticsService.findDays());
     }
 
-    /*public GlobalRet<Boolean> uploadDDosDetection(){
-
-    }*/
 }

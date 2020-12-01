@@ -25,6 +25,7 @@
         <module>contract</module>
         <module>P4FlowWeb</module>
         <module>txweb</module>
+        <module>statistics</module>
     </modules>
 
     <!-- Spring Boot 启动父依赖 -->

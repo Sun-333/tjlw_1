@@ -48,7 +48,7 @@ public class P4ServiceImplTest {
 
     @Test
     public void createP4InfoTables() {
-        hBaseService.deleteRow("p4Info","28918941");
+        hBaseService.deleteRow("Info","28918941");
         P4Info p4Info = new P4Info("28918960005","1024","192.168.50.0","192.168.50.1",
                 "80","80","http","28918942");
         List<Switch> switches = new ArrayList<>();

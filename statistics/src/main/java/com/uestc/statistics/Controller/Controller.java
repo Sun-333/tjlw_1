@@ -1,5 +1,6 @@
 package com.uestc.statistics.Controller;
 
+import com.uestc.statistics.entity.DDosVO;
 import com.uestc.statistics.entity.StreamSizeEntityVO;
 import com.uestc.statistics.service.P4Service;
 import com.uestc.tjlw.common.util.GlobalRet;
@@ -25,13 +26,13 @@ import java.util.Map;
 @Api(tags = {"DDos统计"})
 @Slf4j
 @RestController
-@RequestMapping("/statistics")
+@RequestMapping("/ddos")
 public class Controller {
     @Autowired
     private P4Service p4Service;
 
     @ApiOperation(value = "DDos检测 请求次数统计")
-    @GetMapping("/findDays")
+    @GetMapping("/findSourcesStreamSizeByTargetIp")
     public GlobalRet<Map<String,Long>> findSourcesStreamSizeByTargetIp(@RequestBody StreamSizeEntityVO entityVO){
         Calendar calendar =Calendar.getInstance();
         calendar.setTime(entityVO.getEndTime());
@@ -41,5 +42,8 @@ public class Controller {
                 entityVO.getEndTime().getTime()+"",
                 entityVO.getTargetIp()
         ));
+    }
+    public GlobalRet<Boolean> postDDosRes(@RequestBody DDosVO entityVO){
+
     }
 }
