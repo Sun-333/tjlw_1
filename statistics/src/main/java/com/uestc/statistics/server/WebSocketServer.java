@@ -1,4 +1,4 @@
-package com.uestc.txweb.server;
+package com.uestc.statistics.server;
 
 import cn.hutool.json.JSONUtil;
 import org.springframework.stereotype.Component;

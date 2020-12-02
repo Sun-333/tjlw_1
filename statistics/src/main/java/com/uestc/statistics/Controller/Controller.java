@@ -1,19 +1,21 @@
 package com.uestc.statistics.Controller;
 
 import com.uestc.statistics.entity.DDosVO;
+import com.uestc.statistics.entity.StatistcisVo;
 import com.uestc.statistics.entity.StreamSizeEntityVO;
+import com.uestc.statistics.service.DDosService;
 import com.uestc.statistics.service.P4Service;
 import com.uestc.tjlw.common.util.GlobalRet;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,9 +32,11 @@ import java.util.Map;
 public class Controller {
     @Autowired
     private P4Service p4Service;
+    @Autowired
+    private DDosService dDosService;
 
     @ApiOperation(value = "DDos检测 请求次数统计")
-    @GetMapping("/findSourcesStreamSizeByTargetIp")
+    @PostMapping("/findSourcesStreamSizeByTargetIp")
     public GlobalRet<Map<String,Long>> findSourcesStreamSizeByTargetIp(@RequestBody StreamSizeEntityVO entityVO){
         Calendar calendar =Calendar.getInstance();
         calendar.setTime(entityVO.getEndTime());
@@ -43,7 +47,21 @@ public class Controller {
                 entityVO.getTargetIp()
         ));
     }
+    @ApiOperation(value = "DDos检测结果提交")
+    @PostMapping("/postDDosRes")
     public GlobalRet<Boolean> postDDosRes(@RequestBody DDosVO entityVO){
+        return new GlobalRet<>(dDosService.save(entityVO));
+    }
 
+    @ApiOperation(value = "DDos统计接口")
+    @PostMapping("/statistic")
+    public GlobalRet<StatistcisVo> postDDosRes(@RequestParam String beginTime, @RequestParam String endTime){
+        return new GlobalRet<StatistcisVo>(dDosService.statistics(beginTime,endTime));
+    }
+
+    @ApiOperation(value = "DDos数据查询")
+    @PostMapping("/getDDosInfos")
+    public GlobalRet<List<DDosVO>> getDDosInfos(@RequestParam String beginTime, @RequestParam String endTime){
+        return new GlobalRet<List<DDosVO>>(dDosService.findDDosInfo(beginTime,endTime));
     }
 }

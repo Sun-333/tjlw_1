@@ -1,4 +1,4 @@
-package com.uestc.tjlw.hbase.config;
+package com.uestc.statistics.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -24,13 +24,13 @@ public class Swagger2Config implements WebMvcConfigurer {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(apiInfo())
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.uestc.tjlw"))
+				.apis(RequestHandlerSelectors.basePackage("com.uestc.statistics"))
 				.build();
 	}
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("tjl存储模块API")
+				.title("DDos统计接口文档")
 				.description("tjl存储模块API")
 				.contact(new Contact("电子科技大学区块链研究所", "http://www.scse.uestc.edu.cn/", "1019275678@qq.com"))
 				.version("1.0")

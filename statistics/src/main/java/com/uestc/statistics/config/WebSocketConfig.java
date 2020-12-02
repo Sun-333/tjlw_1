@@ -1,4 +1,4 @@
-package com.uestc.txweb.config;
+package com.uestc.statistics.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

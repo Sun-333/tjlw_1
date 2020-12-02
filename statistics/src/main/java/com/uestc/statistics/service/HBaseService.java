@@ -7,7 +7,7 @@ import org.apache.hadoop.hbase.CompareOperator;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
-import org.apache.hadoop.hbase.client.coprocessor.AggregationClient;
+
 import org.apache.hadoop.hbase.filter.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.slf4j.Logger;

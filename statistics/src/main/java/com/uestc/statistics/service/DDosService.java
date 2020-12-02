@@ -1,8 +1,11 @@
 package com.uestc.statistics.service;
 
 import com.uestc.statistics.entity.DDosVO;
+import com.uestc.statistics.entity.StatistcisVo;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yushansun
@@ -31,4 +34,22 @@ public interface DDosService {
      * @return
      */
     public boolean creatDDosTable();
+
+
+    /**
+     * 以时间窗口统计DDos 攻击情况
+     * @param beginTime 起始时间
+     * @param endTime 结束时间
+     * @return 统计结果
+     */
+    public StatistcisVo statistics(String beginTime, String endTime);
+
+    /**
+     * 以时间窗口统计DDos 攻击数据
+     * @param beginTime 起始时间
+     * @param endTime 结束时间
+     * @return 统计结果
+     */
+    public List<DDosVO>  findDDosInfo(String beginTime,String endTime);
+
 }

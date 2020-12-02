@@ -41,7 +41,7 @@ public class StatisticsScheduleTask {
      * 每天统计流量大小
      */
 
-    @Scheduled(cron = "* * * 0/1 * ?")
+    @Scheduled(cron = "0 0 12 * * ?")
     private void statisticsDay() throws IOException {
         Calendar rightNow = Calendar.getInstance();
         Calendar beforeOneHour = Calendar.getInstance();

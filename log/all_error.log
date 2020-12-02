@@ -1,0 +1,108 @@
+2020-11-30 23:12:22.329 [pool-1-thread-2] ERROR cn.mrray.raybaas.sdk.grpc.start.client.Channel - grpc服务异常
+java.util.concurrent.ExecutionException: io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+Channel Pipeline: [SslHandler#0, ProtocolNegotiators$ClientTlsHandler#0, WriteBufferingAndExceptionHandler#0, DefaultChannelPipeline$TailContext#0]
+	at com.google.common.util.concurrent.AbstractFuture.getDoneValue(AbstractFuture.java:531)
+	at com.google.common.util.concurrent.AbstractFuture.get(AbstractFuture.java:512)
+	at cn.mrray.raybaas.sdk.grpc.start.client.Channel.lambda$getRpcReplySuccess$1(Channel.java:333)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at cn.mrray.raybaas.sdk.grpc.start.client.Channel.getRpcReplySuccess(Channel.java:331)
+	at cn.mrray.raybaas.sdk.grpc.start.client.Channel.invoke(Channel.java:281)
+	at cn.mrray.raybaas.sdk.client.support.SdkClientImpl.invokeContract(SdkClientImpl.java:537)
+	at cn.mrray.raybaas.sdk.client.support.SdkClientImpl.invoke(SdkClientImpl.java:105)
+	at cn.mrray.raybaas.demo.service.ContractService.invoke(ContractService.java:31)
+	at cn.mrray.raybaas.demo.service.ContractService.invoke(ContractService.java:41)
+	at cn.mrray.raybaas.demo.service.impl.IntegrityContractServiceImpl.save(IntegrityContractServiceImpl.java:83)
+	at cn.mrray.raybaas.demo.server.KafkaConsumer$1.run(KafkaConsumer.java:76)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+Channel Pipeline: [SslHandler#0, ProtocolNegotiators$ClientTlsHandler#0, WriteBufferingAndExceptionHandler#0, DefaultChannelPipeline$TailContext#0]
+	at io.grpc.Status.asRuntimeException(Status.java:533)
+	at io.grpc.stub.ClientCalls$UnaryStreamToFuture.onClose(ClientCalls.java:490)
+	at io.grpc.PartialForwardingClientCallListener.onClose(PartialForwardingClientCallListener.java:39)
+	at io.grpc.ForwardingClientCallListener.onClose(ForwardingClientCallListener.java:23)
+	at io.grpc.ForwardingClientCallListener$SimpleForwardingClientCallListener.onClose(ForwardingClientCallListener.java:40)
+	at io.grpc.internal.CensusStatsModule$StatsClientInterceptor$1$1.onClose(CensusStatsModule.java:700)
+	at io.grpc.PartialForwardingClientCallListener.onClose(PartialForwardingClientCallListener.java:39)
+	at io.grpc.ForwardingClientCallListener.onClose(ForwardingClientCallListener.java:23)
+	at io.grpc.ForwardingClientCallListener$SimpleForwardingClientCallListener.onClose(ForwardingClientCallListener.java:40)
+	at io.grpc.internal.CensusTracingModule$TracingClientInterceptor$1$1.onClose(CensusTracingModule.java:399)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:510)
+	at io.grpc.internal.ClientCallImpl.access$300(ClientCallImpl.java:66)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:630)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$700(ClientCallImpl.java:518)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:692)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:681)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123)
+	... 3 common frames omitted
+Caused by: javax.net.ssl.SSLException: handshake timed out
+	at io.grpc.netty.shaded.io.netty.handler.ssl.SslHandler$5.run(SslHandler.java:2003)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:127)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:163)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:416)
+	at io.grpc.netty.shaded.io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:515)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:918)
+	at io.grpc.netty.shaded.io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 common frames omitted
+2020-11-30 23:12:22.329 [pool-1-thread-1] ERROR cn.mrray.raybaas.sdk.grpc.start.client.Channel - grpc服务异常
+java.util.concurrent.ExecutionException: io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+Channel Pipeline: [SslHandler#0, ProtocolNegotiators$ClientTlsHandler#0, WriteBufferingAndExceptionHandler#0, DefaultChannelPipeline$TailContext#0]
+	at com.google.common.util.concurrent.AbstractFuture.getDoneValue(AbstractFuture.java:531)
+	at com.google.common.util.concurrent.AbstractFuture.get(AbstractFuture.java:512)
+	at cn.mrray.raybaas.sdk.grpc.start.client.Channel.lambda$getRpcReplySuccess$1(Channel.java:333)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at cn.mrray.raybaas.sdk.grpc.start.client.Channel.getRpcReplySuccess(Channel.java:331)
+	at cn.mrray.raybaas.sdk.grpc.start.client.Channel.invoke(Channel.java:281)
+	at cn.mrray.raybaas.sdk.client.support.SdkClientImpl.invokeContract(SdkClientImpl.java:537)
+	at cn.mrray.raybaas.sdk.client.support.SdkClientImpl.invoke(SdkClientImpl.java:105)
+	at cn.mrray.raybaas.demo.service.ContractService.invoke(ContractService.java:31)
+	at cn.mrray.raybaas.demo.service.ContractService.invoke(ContractService.java:41)
+	at cn.mrray.raybaas.demo.service.impl.IntegrityContractServiceImpl.save(IntegrityContractServiceImpl.java:83)
+	at cn.mrray.raybaas.demo.server.KafkaConsumer$1.run(KafkaConsumer.java:76)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+Channel Pipeline: [SslHandler#0, ProtocolNegotiators$ClientTlsHandler#0, WriteBufferingAndExceptionHandler#0, DefaultChannelPipeline$TailContext#0]
+	at io.grpc.Status.asRuntimeException(Status.java:533)
+	at io.grpc.stub.ClientCalls$UnaryStreamToFuture.onClose(ClientCalls.java:490)
+	at io.grpc.PartialForwardingClientCallListener.onClose(PartialForwardingClientCallListener.java:39)
+	at io.grpc.ForwardingClientCallListener.onClose(ForwardingClientCallListener.java:23)
+	at io.grpc.ForwardingClientCallListener$SimpleForwardingClientCallListener.onClose(ForwardingClientCallListener.java:40)
+	at io.grpc.internal.CensusStatsModule$StatsClientInterceptor$1$1.onClose(CensusStatsModule.java:700)
+	at io.grpc.PartialForwardingClientCallListener.onClose(PartialForwardingClientCallListener.java:39)
+	at io.grpc.ForwardingClientCallListener.onClose(ForwardingClientCallListener.java:23)
+	at io.grpc.ForwardingClientCallListener$SimpleForwardingClientCallListener.onClose(ForwardingClientCallListener.java:40)
+	at io.grpc.internal.CensusTracingModule$TracingClientInterceptor$1$1.onClose(CensusTracingModule.java:399)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:510)
+	at io.grpc.internal.ClientCallImpl.access$300(ClientCallImpl.java:66)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:630)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$700(ClientCallImpl.java:518)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:692)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:681)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123)
+	... 3 common frames omitted
+Caused by: javax.net.ssl.SSLException: handshake timed out
+	at io.grpc.netty.shaded.io.netty.handler.ssl.SslHandler$5.run(SslHandler.java:2003)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:127)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:163)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:416)
+	at io.grpc.netty.shaded.io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:515)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:918)
+	at io.grpc.netty.shaded.io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 common frames omitted
+2020-11-30 23:20:27.216 [p4Upchain-0-C-1] ERROR org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Offset commit failed on partition p4Info-0 at offset 58127: The coordinator is not aware of this member.
+2020-11-30 23:20:27.232 [p4Upchain-0-C-1] ERROR org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Offset commit failed on partition p4Info-0 at offset 58128: The coordinator is not aware of this member.
+2020-11-30 23:20:27.234 [p4Upchain-0-C-1] ERROR org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Offset commit failed on partition p4Info-0 at offset 58128: The coordinator is not aware of this member.
+2020-11-30 23:20:27.236 [p4Upchain-0-C-1] ERROR org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Offset commit failed on partition p4Info-0 at offset 58128: The coordinator is not aware of this member.
+2020-11-30 23:20:27.237 [p4Upchain-0-C-1] ERROR org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Offset commit failed on partition p4Info-0 at offset 58128: The coordinator is not aware of this member.
+2020-11-30 23:20:27.237 [p4Upchain-0-C-1] ERROR org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Offset commit failed on partition p4Info-0 at offset 58128: The coordinator is not aware of this member.
+2020-11-30 23:20:27.547 [p4Upchain-0-C-1] ERROR org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Offset commit failed on partition p4Info-0 at offset 58128: The coordinator is not aware of this member.
+2020-11-30 23:20:27.873 [p4Upchain-0-C-1] ERROR org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Offset commit failed on partition p4Info-0 at offset 58143: The coordinator is not aware of this member.

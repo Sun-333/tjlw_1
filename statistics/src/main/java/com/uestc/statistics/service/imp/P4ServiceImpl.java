@@ -34,7 +34,7 @@ public class P4ServiceImpl implements P4Service {
     @Autowired
     private HBaseService hBaseService;
 
-    private String  p4TableName="p4Info";    //表格名称
+    private static String  p4TableName="p4Info";    //表格名称
 
     private ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
@@ -150,8 +150,6 @@ public class P4ServiceImpl implements P4Service {
 
     @Override
     public Map<String, Long> findSourcesStreamSizeByTargetIp(String rowKeyBegin, String rowKeyEnd,String targetIp) {
-        System.out.println(rowKeyBegin);
-        System.out.println(rowKeyEnd);
         AtomicLongMap<String> atomicLongMap = AtomicLongMap.create();
         Filter filter = hBaseService.singleColumnValueFilter(P4Info.getBaseInfoFamilyName(),"targetIp",CompareOperator.EQUAL,targetIp);
         Map<String,Map<String,String>> map = hBaseService.getResultScanner(p4TableName,rowKeyBegin,rowKeyEnd,filter);

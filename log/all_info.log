@@ -1,15 +1,15 @@
-2020-11-19 10:06:35.280 [main] INFO  cn.mrray.raybaas.demo.ContractApplication - Starting ContractApplication on MACdeMBP with PID 1609 (/Users/yushansun/Documents/tjlw/contract/target/classes started by yushansun in /Users/yushansun/Documents/tjlw)
-2020-11-19 10:06:35.287 [main] INFO  cn.mrray.raybaas.demo.ContractApplication - No active profile set, falling back to default profiles: default
-2020-11-19 10:06:36.132 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.kafka.annotation.KafkaBootstrapConfiguration' of type [org.springframework.kafka.annotation.KafkaBootstrapConfiguration$$EnhancerBySpringCGLIB$$fffd4bd5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-11-19 10:06:36.420 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
-2020-11-19 10:06:36.430 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
-2020-11-19 10:06:36.439 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2020-11-19 10:06:36.439 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.16]
-2020-11-19 10:06:36.444 [main] INFO  org.apache.catalina.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/yushansun/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
-2020-11-19 10:06:36.519 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2020-11-19 10:06:36.519 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1180 ms
-2020-11-19 10:06:37.284 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
-2020-11-19 10:06:37.505 [main] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+2020-12-01 11:57:08.236 [main] INFO  cn.mrray.raybaas.demo.ContractApplication - Starting ContractApplication on MACdeMBP with PID 8749 (/Users/yushansun/Documents/tjlw/contract/target/classes started by yushansun in /Users/yushansun/Documents/tjlw)
+2020-12-01 11:57:08.241 [main] INFO  cn.mrray.raybaas.demo.ContractApplication - No active profile set, falling back to default profiles: default
+2020-12-01 11:57:09.231 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.kafka.annotation.KafkaBootstrapConfiguration' of type [org.springframework.kafka.annotation.KafkaBootstrapConfiguration$$EnhancerBySpringCGLIB$$fd4955f9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-01 11:57:09.611 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8084 (http)
+2020-12-01 11:57:09.634 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8084"]
+2020-12-01 11:57:09.645 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-12-01 11:57:09.646 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-12-01 11:57:09.654 [main] INFO  org.apache.catalina.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/yushansun/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2020-12-01 11:57:09.930 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-12-01 11:57:09.930 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1639 ms
+2020-12-01 11:57:10.623 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-01 11:57:10.923 [main] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
 	auto.commit.interval.ms = 1000
 	auto.offset.reset = latest
 	bootstrap.servers = [192.168.50.240:9092]
@@ -22,7 +22,7 @@
 	fetch.max.bytes = 52428800
 	fetch.max.wait.ms = 500
 	fetch.min.bytes = 1
-	group.id = contract
+	group.id = p4Upchain
 	heartbeat.interval.ms = 3000
 	interceptor.classes = []
 	internal.leave.group.on.close = true
@@ -76,10 +76,10 @@
 	ssl.truststore.type = JKS
 	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
 
-2020-11-19 10:06:37.541 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version : 2.0.1
-2020-11-19 10:06:37.541 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId : fa14705e51bd2ce5
-2020-11-19 10:06:37.847 [main] INFO  org.apache.kafka.clients.Metadata - Cluster ID: OOlipCMdTYaTdSUDhyvBXg
-2020-11-19 10:06:37.864 [main] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+2020-12-01 11:57:11.049 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version : 2.0.1
+2020-12-01 11:57:11.049 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId : fa14705e51bd2ce5
+2020-12-01 11:57:11.279 [main] INFO  org.apache.kafka.clients.Metadata - Cluster ID: OOlipCMdTYaTdSUDhyvBXg
+2020-12-01 11:57:11.295 [main] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
 	auto.commit.interval.ms = 1000
 	auto.offset.reset = latest
 	bootstrap.servers = [192.168.50.240:9092]
@@ -92,7 +92,7 @@
 	fetch.max.bytes = 52428800
 	fetch.max.wait.ms = 500
 	fetch.min.bytes = 1
-	group.id = contract
+	group.id = p4Upchain
 	heartbeat.interval.ms = 3000
 	interceptor.classes = []
 	internal.leave.group.on.close = true
@@ -146,46 +146,66 @@
 	ssl.truststore.type = JKS
 	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
 
-2020-11-19 10:06:37.868 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version : 2.0.1
-2020-11-19 10:06:37.868 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId : fa14705e51bd2ce5
-2020-11-19 10:06:37.870 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
-2020-11-19 10:06:37.879 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
-2020-11-19 10:06:37.895 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
-2020-11-19 10:06:37.899 [main] INFO  cn.mrray.raybaas.demo.ContractApplication - Started ContractApplication in 3.083 seconds (JVM running for 3.878)
-2020-11-19 10:06:37.940 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.clients.Metadata - Cluster ID: OOlipCMdTYaTdSUDhyvBXg
-2020-11-19 10:06:37.969 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=contract] Discovered group coordinator 192.168.50.240:9092 (id: 2147483647 rack: null)
-2020-11-19 10:06:37.971 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=contract] Revoking previously assigned partitions []
-2020-11-19 10:06:37.971 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.springframework.kafka.listener.KafkaMessageListenerContainer - partitions revoked: []
-2020-11-19 10:06:37.971 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=contract] (Re-)joining group
-2020-11-19 10:06:38.050 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=contract] Successfully joined group with generation 63
-2020-11-19 10:06:38.051 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=contract] Setting newly assigned partitions [p4Info-0]
-2020-11-19 10:06:38.067 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.springframework.kafka.listener.KafkaMessageListenerContainer - partitions assigned: [p4Info-0]
-2020-11-19 10:11:35.753 [pool-2-thread-3] INFO  org.apache.kafka.clients.producer.ProducerConfig - ProducerConfig values: 
-	acks = 1
-	batch.size = 16384
+2020-12-01 11:57:11.300 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version : 2.0.1
+2020-12-01 11:57:11.300 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId : fa14705e51bd2ce5
+2020-12-01 11:57:11.302 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2020-12-01 11:57:11.314 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8084"]
+2020-12-01 11:57:11.329 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.Metadata - Cluster ID: OOlipCMdTYaTdSUDhyvBXg
+2020-12-01 11:57:11.330 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Discovered group coordinator 192.168.50.240:9092 (id: 2147483647 rack: null)
+2020-12-01 11:57:11.333 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Revoking previously assigned partitions []
+2020-12-01 11:57:11.333 [p4Upchain-0-C-1] INFO  org.springframework.kafka.listener.KafkaMessageListenerContainer - partitions revoked: []
+2020-12-01 11:57:11.334 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] (Re-)joining group
+2020-12-01 11:57:11.336 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8084 (http) with context path ''
+2020-12-01 11:57:11.340 [main] INFO  cn.mrray.raybaas.demo.ContractApplication - Started ContractApplication in 3.598 seconds (JVM running for 4.313)
+2020-12-01 11:57:11.397 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Successfully joined group with generation 24
+2020-12-01 11:57:11.398 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Setting newly assigned partitions [p4Info-0]
+2020-12-01 11:57:11.408 [p4Upchain-0-C-1] INFO  org.springframework.kafka.listener.KafkaMessageListenerContainer - partitions assigned: [p4Info-0]
+2020-12-01 12:01:37.608 [p4Upchain-0-C-1] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService
+2020-12-01 12:01:37.809 [p4Upchain-0-C-1] INFO  org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer - Consumer stopped
+2020-12-01 12:01:37.814 [Thread-10] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-01 12:01:53.836 [main] INFO  cn.mrray.raybaas.demo.ContractApplication - Starting ContractApplication on MACdeMBP with PID 8803 (/Users/yushansun/Documents/tjlw/contract/target/classes started by yushansun in /Users/yushansun/Documents/tjlw)
+2020-12-01 12:01:53.842 [main] INFO  cn.mrray.raybaas.demo.ContractApplication - No active profile set, falling back to default profiles: default
+2020-12-01 12:01:54.753 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.kafka.annotation.KafkaBootstrapConfiguration' of type [org.springframework.kafka.annotation.KafkaBootstrapConfiguration$$EnhancerBySpringCGLIB$$b501724b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-01 12:01:55.046 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8084 (http)
+2020-12-01 12:01:55.059 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8084"]
+2020-12-01 12:01:55.068 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-12-01 12:01:55.068 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-12-01 12:01:55.074 [main] INFO  org.apache.catalina.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/yushansun/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2020-12-01 12:01:55.190 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-12-01 12:01:55.190 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1294 ms
+2020-12-01 12:01:55.785 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-01 12:01:55.977 [main] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	auto.commit.interval.ms = 1000
+	auto.offset.reset = latest
 	bootstrap.servers = [192.168.50.240:9092]
-	buffer.memory = 33554432
+	check.crcs = true
 	client.id = 
-	compression.type = none
 	connections.max.idle.ms = 540000
-	enable.idempotence = false
+	default.api.timeout.ms = 60000
+	enable.auto.commit = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = p4Upchain
+	heartbeat.interval.ms = 3000
 	interceptor.classes = []
-	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
-	linger.ms = 0
-	max.block.ms = 60000
-	max.in.flight.requests.per.connection = 5
-	max.request.size = 1048576
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
 	metadata.max.age.ms = 300000
 	metric.reporters = []
 	metrics.num.samples = 2
 	metrics.recording.level = INFO
 	metrics.sample.window.ms = 30000
-	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
-	receive.buffer.bytes = 32768
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
 	reconnect.backoff.max.ms = 1000
 	reconnect.backoff.ms = 50
 	request.timeout.ms = 30000
-	retries = 0
 	retry.backoff.ms = 100
 	sasl.client.callback.handler.class = null
 	sasl.jaas.config = null
@@ -203,6 +223,7 @@
 	sasl.mechanism = GSSAPI
 	security.protocol = PLAINTEXT
 	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
 	ssl.cipher.suites = null
 	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
 	ssl.endpoint.identification.algorithm = https
@@ -218,10 +239,257 @@
 	ssl.truststore.location = null
 	ssl.truststore.password = null
 	ssl.truststore.type = JKS
-	transaction.timeout.ms = 60000
-	transactional.id = null
-	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
 
-2020-11-19 10:11:35.776 [pool-2-thread-3] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version : 2.0.1
-2020-11-19 10:11:35.776 [pool-2-thread-3] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId : fa14705e51bd2ce5
-2020-11-19 10:11:35.858 [kafka-producer-network-thread | producer-1] INFO  org.apache.kafka.clients.Metadata - Cluster ID: OOlipCMdTYaTdSUDhyvBXg
+2020-12-01 12:01:56.030 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version : 2.0.1
+2020-12-01 12:01:56.031 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId : fa14705e51bd2ce5
+2020-12-01 12:01:56.195 [main] INFO  org.apache.kafka.clients.Metadata - Cluster ID: OOlipCMdTYaTdSUDhyvBXg
+2020-12-01 12:01:56.220 [main] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	auto.commit.interval.ms = 1000
+	auto.offset.reset = latest
+	bootstrap.servers = [192.168.50.240:9092]
+	check.crcs = true
+	client.id = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = p4Upchain
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2020-12-01 12:01:56.226 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version : 2.0.1
+2020-12-01 12:01:56.226 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId : fa14705e51bd2ce5
+2020-12-01 12:01:56.229 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2020-12-01 12:01:56.242 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8084"]
+2020-12-01 12:01:56.260 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.Metadata - Cluster ID: OOlipCMdTYaTdSUDhyvBXg
+2020-12-01 12:01:56.262 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Discovered group coordinator 192.168.50.240:9092 (id: 2147483647 rack: null)
+2020-12-01 12:01:56.265 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Revoking previously assigned partitions []
+2020-12-01 12:01:56.265 [p4Upchain-0-C-1] INFO  org.springframework.kafka.listener.KafkaMessageListenerContainer - partitions revoked: []
+2020-12-01 12:01:56.265 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] (Re-)joining group
+2020-12-01 12:01:56.271 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8084 (http) with context path ''
+2020-12-01 12:01:56.279 [main] INFO  cn.mrray.raybaas.demo.ContractApplication - Started ContractApplication in 2.824 seconds (JVM running for 3.472)
+2020-12-01 12:01:56.325 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Successfully joined group with generation 26
+2020-12-01 12:01:56.326 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Setting newly assigned partitions [p4Info-0]
+2020-12-01 12:01:56.335 [p4Upchain-0-C-1] INFO  org.springframework.kafka.listener.KafkaMessageListenerContainer - partitions assigned: [p4Info-0]
+2020-12-01 12:09:21.945 [p4Upchain-0-C-1] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService
+2020-12-01 12:09:21.955 [p4Upchain-0-C-1] INFO  org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer - Consumer stopped
+2020-12-01 12:09:21.958 [Thread-7] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-01 12:09:26.124 [main] INFO  cn.mrray.raybaas.demo.ContractApplication - Starting ContractApplication on MACdeMBP with PID 8888 (/Users/yushansun/Documents/tjlw/contract/target/classes started by yushansun in /Users/yushansun/Documents/tjlw)
+2020-12-01 12:09:26.137 [main] INFO  cn.mrray.raybaas.demo.ContractApplication - No active profile set, falling back to default profiles: default
+2020-12-01 12:09:27.039 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.kafka.annotation.KafkaBootstrapConfiguration' of type [org.springframework.kafka.annotation.KafkaBootstrapConfiguration$$EnhancerBySpringCGLIB$$47bb16c7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-01 12:09:27.343 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8084 (http)
+2020-12-01 12:09:27.355 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8084"]
+2020-12-01 12:09:27.365 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-12-01 12:09:27.365 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.16]
+2020-12-01 12:09:27.370 [main] INFO  org.apache.catalina.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/yushansun/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2020-12-01 12:09:27.478 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-12-01 12:09:27.478 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1277 ms
+2020-12-01 12:09:28.086 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-01 12:09:28.275 [main] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	auto.commit.interval.ms = 1000
+	auto.offset.reset = latest
+	bootstrap.servers = [192.168.50.240:9092]
+	check.crcs = true
+	client.id = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = p4Upchain
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2020-12-01 12:09:28.318 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version : 2.0.1
+2020-12-01 12:09:28.318 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId : fa14705e51bd2ce5
+2020-12-01 12:09:28.492 [main] INFO  org.apache.kafka.clients.Metadata - Cluster ID: OOlipCMdTYaTdSUDhyvBXg
+2020-12-01 12:09:28.505 [main] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	auto.commit.interval.ms = 1000
+	auto.offset.reset = latest
+	bootstrap.servers = [192.168.50.240:9092]
+	check.crcs = true
+	client.id = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = p4Upchain
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2020-12-01 12:09:28.508 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version : 2.0.1
+2020-12-01 12:09:28.509 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId : fa14705e51bd2ce5
+2020-12-01 12:09:28.511 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2020-12-01 12:09:28.522 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8084"]
+2020-12-01 12:09:28.541 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8084 (http) with context path ''
+2020-12-01 12:09:28.546 [main] INFO  cn.mrray.raybaas.demo.ContractApplication - Started ContractApplication in 2.835 seconds (JVM running for 3.475)
+2020-12-01 12:09:28.582 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.Metadata - Cluster ID: OOlipCMdTYaTdSUDhyvBXg
+2020-12-01 12:09:28.583 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Discovered group coordinator 192.168.50.240:9092 (id: 2147483647 rack: null)
+2020-12-01 12:09:28.585 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Revoking previously assigned partitions []
+2020-12-01 12:09:28.585 [p4Upchain-0-C-1] INFO  org.springframework.kafka.listener.KafkaMessageListenerContainer - partitions revoked: []
+2020-12-01 12:09:28.585 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] (Re-)joining group
+2020-12-01 12:09:28.613 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Successfully joined group with generation 28
+2020-12-01 12:09:28.615 [p4Upchain-0-C-1] INFO  org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=p4Upchain] Setting newly assigned partitions [p4Info-0]
+2020-12-01 12:09:28.623 [p4Upchain-0-C-1] INFO  org.springframework.kafka.listener.KafkaMessageListenerContainer - partitions assigned: [p4Info-0]
+2020-12-01 12:27:20.045 [p4Upchain-0-C-1] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService
+2020-12-01 12:27:20.065 [p4Upchain-0-C-1] INFO  org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer - Consumer stopped
+2020-12-01 12:27:20.068 [Thread-7] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'

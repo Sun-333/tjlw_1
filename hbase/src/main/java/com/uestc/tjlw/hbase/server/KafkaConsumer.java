@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @author yushansun
  * @title: KafkaConsumer
@@ -24,6 +26,7 @@ public class KafkaConsumer {
     @KafkaListener(topics = "p4Info")
     public void listen (ConsumerRecord<?, ?> record){
         System.out.printf("topic is %s, offset is %d, value is %s \n", record.topic(), record.offset(), record.value());
+
         addInfoHandler.handle((String) record.value());
     }
 }

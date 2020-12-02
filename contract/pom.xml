@@ -28,9 +28,8 @@
 
     </dependencies>
 
-    <!--spring boot打包的话需要指定一个唯一的入门-->
     <build>
-        <finalName>raybaas-web8085</finalName>
+        <finalName>tjlw-contract</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -62,10 +61,21 @@
                     <useDefaultDelimiters>true</useDefaultDelimiters>
                 </configuration>
             </plugin>
+
             <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.0.0</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
         </plugins>
     </build>
