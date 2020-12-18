@@ -1,6 +1,7 @@
 
 package com.uestc.statistics.task;
 
+import com.uestc.statistics.service.DDosService;
 import com.uestc.statistics.service.P4Service;
 import com.uestc.statistics.util.RedisUtil;
 import com.uestc.tjlw.common.pojo.Statistics;
@@ -22,12 +23,14 @@ public class StatisticsScheduleTask {
     private RedisUtil redisUtil;
     @Autowired
     private P4Service p4Service;
+    @Autowired
+    private DDosService dDosService;
 
     /**
      * 每小时统计流量大小
      */
 
-    @Scheduled(cron = "* * 0/1 * * ?")
+    @Scheduled(cron = "0 0 0-23 * * ?")
     private void statisticsHour() throws IOException {
         Calendar rightNow = Calendar.getInstance();
         Calendar beforeOneHour = Calendar.getInstance();
@@ -52,10 +55,26 @@ public class StatisticsScheduleTask {
     }
 
     /**
+     * 每天统计流量大小
+     */
+
+    @Scheduled(cron = "0 0 0 1 * ?")
+    private void ddosStatistics()  {
+        Calendar rightNow = Calendar.getInstance();
+        Calendar beforeOneMonth = Calendar.getInstance();
+        beforeOneMonth.add(Calendar.DATE,-30);
+        int count = dDosService.findDDosInfo(beforeOneMonth.getTimeInMillis()+"",rightNow.getTimeInMillis()+"").size();
+        Statistics statistics = new Statistics();
+        statistics.setTime(rightNow.getTimeInMillis()+"");
+        statistics.setSize(count);
+        redisUtil.lSet("ddos_month", statistics);
+    }
+
+    /**
      * 数据只保存7天
      * @throws IOException
      */
-    @Scheduled(cron = "* * * 1 * ?")
+    @Scheduled(cron = "0 0 12 ? * MON")
     private void cleanByDay() throws IOException {
         Calendar rightNow = Calendar.getInstance();
         StringBuilder stringBuilder = new StringBuilder();

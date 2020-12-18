@@ -52,4 +52,6 @@ public interface DDosService {
      */
     public List<DDosVO>  findDDosInfo(String beginTime,String endTime);
 
+    public List<Object> ddosStatistics();
+
 }

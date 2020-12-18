@@ -7,11 +7,11 @@ import com.uestc.statistics.server.WebSocketServer;
 import com.uestc.statistics.service.DDosService;
 import com.uestc.statistics.service.HBaseService;
 import com.uestc.statistics.service.P4Service;
+import com.uestc.statistics.util.RedisUtil;
 import com.uestc.tjlw.common.pojo.P4Info;
 import com.uestc.tjlw.common.util.JsonUtil;
 import org.apache.hadoop.hbase.CompareOperator;
 import org.apache.hadoop.hbase.filter.Filter;
-import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +36,8 @@ public class DDosServiceImpl implements DDosService {
     private WebSocketServer webSocketServer;
     @Autowired
     private P4Service p4Service;
+    @Autowired
+    private RedisUtil redisUtil;
     private ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     private static String  p4TableName="p4Info";    //表格名称
@@ -83,6 +85,7 @@ public class DDosServiceImpl implements DDosService {
                         beginTime,
                         endTime);
         CountDownLatch countDownLatch = new CountDownLatch(ans.size());
+        if (ans==null) return null;
         ans.forEach((k,v)->{
             String[] ipsStr = v.get("ips").split(",");
             for(String ip:ipsStr)
@@ -98,6 +101,11 @@ public class DDosServiceImpl implements DDosService {
         return new StatistcisVo(res.asMap(),atomicLong.longValue());
     }
 
+    public List<Object> ddosStatistics(){
+        long size = redisUtil.lGetListSize("ddos_month");
+        return redisUtil.lGet("ddos_month",size-6,size-1);
+    }
+
     @Override
     public  List<DDosVO> findDDosInfo(String beginTime, String endTime) {
         List<DDosVO> res = new LinkedList<>();
@@ -105,9 +113,11 @@ public class DDosServiceImpl implements DDosService {
                 DDosVO.getTableName(),
                 beginTime,
                 endTime);
-        ans.forEach((k,v)->{
-            res.add(DDosVO.getBaseInfoInstance(v));
-        });
+        if(ans!=null){
+            ans.forEach((k,v)->{
+                res.add(DDosVO.getBaseInfoInstance(v));
+            });
+        }
         return res;
     }
 }
